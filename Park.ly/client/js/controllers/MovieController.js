@@ -1,11 +1,12 @@
 app.controller('MovieController', ['$scope', 'movies', '$routeParams', function($scope, movies, $routeParams) {
   movies.success(function(data){
     $scope.movie = data.results[$routeParams.id];
+    console.log(data)
   })
 
-  renderMap();
+    renderMap();
 
-  $("#myLocation").on('click', function(){
+    $("#myLocation").on('click', function(){
 
     map.remove();
 

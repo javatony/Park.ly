@@ -1,6 +1,18 @@
 var app = angular.module('DiscoveryApp', ['ngRoute']);
 
 app.config(function ($routeProvider){ $routeProvider
+  .when('/users/login', {
+    controller: 'LoginController',
+    templateUrl: 'js/views/login.html'
+  })
+  .when('/users/register', {
+    controller: 'RegisterController',
+    templateUrl: 'js/views/register.html'
+  })
+  .when('/spots/show', {
+    controller: 'ShowController',
+    templateUrl: 'js/views/show.html'
+  })
   .when('/movies', {
     controller: 'MainController',
     templateUrl: 'js/views/movies.html'
@@ -18,11 +30,11 @@ app.config(function ($routeProvider){ $routeProvider
     templateUrl: 'js/views/movie.html'
   })
   .when('/maps', {
-    controller: 'MovieController',
+    controller: 'MapController',
     templateUrl: 'js/views/map.html'
   })
   .otherwise({
-    redirectTo: '/movies'
+    redirectTo: '/maps'
   })
 })
 

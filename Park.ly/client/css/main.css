@@ -5,9 +5,10 @@ body, html {
 }
 
 #map{
-height: 50em ;
-
+  height: 60em;
+  width: 80em;
 }
+
 .top-bar{
     font-weight: 700;
     color:  #EB1690;

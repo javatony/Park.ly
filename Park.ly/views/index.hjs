@@ -5,16 +5,26 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
     <ul>
+      {{! user name }}
       {{#users}}
-        <li>
-          <ol>first name: {{first_name}}
+        <li> Name: {{first_name}}
+          {{! spots }}
+          <ol> Available Spots
             {{#Spots}}
               <li>{{address}}</li>
             {{/Spots}}
           </ol>
+          {{! revervations }}
+          <ol> Upcoming Reservations
+            {{#Reservations}}
+              <li>{{start_date_time}}</li>
+            {{/Reservations}}
+          </ol>
         </li>
-      {{/users}}}
+      {{/users}}
     </ul>
+
   </body>
 </html>

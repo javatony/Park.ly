@@ -14,6 +14,12 @@ module.exports = {
       end_date_time: {
         type: Sequelize.DATE
       },
+      UserId: {
+        type: Sequelize.INTEGER
+      },
+      SpotId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

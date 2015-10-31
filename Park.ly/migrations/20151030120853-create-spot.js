@@ -12,12 +12,15 @@ module.exports = {
         type: Sequelize.STRING
       },
       start_date_time: {
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER
       },
       end_date_time: {
-        type: Sequelize.DATE
+        type: Sequelize.INTEGER
       },
       price: {
+        type: Sequelize.INTEGER
+      },
+      UserId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

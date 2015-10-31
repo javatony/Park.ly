@@ -11,18 +11,13 @@ router.get('/', function(req, res, next) {
     include: [ models.Spot,models.Reservation ]
 
   }).then(function(users) {
-    // console.log(users)
-    // console.log(users[0].Spots)
+
     res.render('index', {
       title: 'Express',
       users: users
     });
   });
 
-    // res.render('index', { title: 'Hello' })
-
-  // console.log(data)
-  // model.User.create
 });
 
 module.exports = router;

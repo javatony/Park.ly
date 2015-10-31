@@ -29,5 +29,13 @@
       {{/users}}
     </ul>
 
+    <form action="/users" method="post">
+      <input type="text" name="first_name">
+      <input type="text" name="last_name">
+      <input type="text" name="email">
+      <input type="text" name="password">
+      <input type="submit" value="Submit">
+    </form>
+
   </body>
 </html>

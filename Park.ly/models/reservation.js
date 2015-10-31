@@ -1,8 +1,8 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Reservation = sequelize.define('Reservation', {
-    start_date_time: DataTypes.DATE,
-    end_date_time: DataTypes.DATE,
+    start_date_time: DataTypes.INTEGER,
+    end_date_time: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER,
     SpotId: DataTypes.INTEGER
   }, {

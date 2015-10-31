@@ -2,8 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var Spot = sequelize.define('Spot', {
     address: DataTypes.STRING,
-    start_date_time: DataTypes.DATE,
-    end_date_time: DataTypes.DATE,
+    start_date_time: DataTypes.INTEGER,
+    end_date_time: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER
   }, {

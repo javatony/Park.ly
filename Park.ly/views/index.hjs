@@ -7,5 +7,11 @@
   <body>
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
+    <p>{{ spot }}</p>
+    <p>id: {{ spot.id }}</p>
+    <p>address: {{ spot.address }}</p>
+    <p>start time: {{ spot.start_date_time }}</p>
+    <p>end time: {{ spot.end_date_time }}</p>
+    <p>price: {{ spot.price }}</p>
   </body>
 </html>

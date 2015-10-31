@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Spot.belongsTo(User),
-        Spot.hasMany(Reservation);
+        Spot.belongsTo(models.User),
+        Spot.hasMany(models.Reservation);
       }
     }
   });

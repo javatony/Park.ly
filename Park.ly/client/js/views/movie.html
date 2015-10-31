@@ -1,0 +1,25 @@
+
+<div class="movie-view">
+  <h2 class="center-content bold-font">{{ movie.title }}</h2>
+  <hr>
+
+
+  <div class="center-content poster-container">
+    <img class="poster" ng-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}">
+  </div>
+
+  <div>
+    <span class="title">Release Date:</span><span class="date"> {{ movie.release_date | date }} </span>
+  </div>
+
+  <hr>
+  <h3 class="bold-font pink-font"> Overview: </h3>
+  <p class="overview"> {{ movie.overview }} </p>
+  <p><span class="bold-font pink-font">Average Vote Rating:</span> {{movie.vote_average}}<p>
+  <p><span class="bold-font pink-font">Number of Votes:</span> {{movie.vote_average}}<p>
+
+</div>
+
+<br>
+
+<a class="back" href="#/movies">Back</a>

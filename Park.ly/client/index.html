@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+
+    <!-- Monsterrat font -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- Mapbox script -->
+
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Bootstrap cdns -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link href="css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <!-- Angular script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
+
+  </head>
+
+  <body ng-app="DiscoveryApp">
+  <!-- <body> -->
+
+
+    <div class="header">
+      <div class="container">
+        <h1 class="top-bar"><a href="#/" class="pink-font no-decoration">Park.ly</a></h1>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="container">
+        <div ng-view></div>
+      </div>
+    </div>
+
+
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+
+    <!-- JS files for Mapbox -->
+    <script src="js/dummyJson.js"></script>
+    <script src="js/getLocation.js"></script>
+    <script src="js/renderMap.js"></script>
+    <script src="js/onReady.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+    <script src="js/controllers/MovieController.js"></script>
+    <script src="js/controllers/UpcomingController.js"></script>
+    <script src="js/controllers/UpcomingMovieController.js"></script>
+
+    <!-- Services -->
+    <script src="js/services/movies.js"></script>
+    <script src="js/services/upcomingMovies.js"></script>
+
+  </body>
+</html>

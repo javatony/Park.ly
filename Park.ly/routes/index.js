@@ -12,17 +12,16 @@ router.get('/', function(req, res, next) {
   // models.Reservation.create({start_date_time: new Date(2001,12,12), end_date_time: new Date(2001,12,13), UserId: 1, SpotId: 2})
   // models.Reservation.create({start_date_time: new Date(2009,12,12), end_date_time: new Date(2009,12,13), UserId: 2, SpotId: 1})
 
+  // show all available spots
+
+  // show current user's spots & reservations if logged in
   models.User.findAll({
-    include: [ models.Spot,models.Reservation ]
-
-  }).then(function(users) {
-    res.render('index', {
-      title: 'Express',
-      users: users,
-
+    include: [ models.Spot,models.Reservation ]})
+    .then(function(users) {
+      res.render('index', {
+      users: users
     });
   });
-
 });
 
 module.exports = router;

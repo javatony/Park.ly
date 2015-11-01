@@ -13,7 +13,8 @@ router.get('/', function(req, res) {
 
 // Spot creation route
 router.post('/', function(req, res) {
-  models.Spot.create(regitq.body)
+  console.log(req.body)
+  // models.Spot.create(req.body)
   res.send({ message: 'created!!!!'})
   // res.redirect('../');
 });

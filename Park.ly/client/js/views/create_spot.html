@@ -1,9 +1,19 @@
+<h1>Post Your Spot Here</h1>
+
+<hr>
+
 <form ng-submit="processForm()">
-    <label for="address">Address</label>
-    <input name="addresss" type="text" ng-model="formData.address">
-    <label for="start_date_time">Start Date</label>
-    <input name="start_date_time" type="datetime" ng-model="formData.start_date_time">
-    <label for="end_date_time">End Date</label>
-    <input name="end_date_time" type="datetime" ng-model="formData.end_date_time">
+    <label for="address">Address</label><br>
+    <input name="addresss" type="text" ng-model="formData.address"><br>
+
+    <label for="start_date_time">Start Date</label><br>
+    <input name="start_date_time" type="datetime-local" ng-model="formData.start_date_time"><br>
+
+    <label for="end_date_time">End Date</label><br>
+    <input name="end_date_time" type="datetime-local" ng-model="formData.end_date_time"><br>
+
+    <label for="price">Price</label><br>
+    <input name="price" type="number" ng-model="formData.price"><hr>
+
     <input type="submit" value="Submit">
 </form>

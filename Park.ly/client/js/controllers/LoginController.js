@@ -19,9 +19,5 @@ app.controller('LoginController', ['$scope', '$http', function($scope, $http){
       console.log(response)
       console.log("you got an error")
     })
-    // $http.post('localhost:8080/users/login', data)
-    //   .success(function(response){
-    //     console.log(response)
-    //   })
   }
 }]);

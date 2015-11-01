@@ -9,9 +9,9 @@ router.use(function(req, res, next) {
 })
 // User creation route
 router.post('/', function(req, res) {
+  // ******** bcrypt ********
   bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
-      // Store hash in your password DB.
       models.User.create({first_name:req.body.first_name, last_name:req.body.last_name, email:req.body.email, password:hash})
       res.send({ message: 'created!!!!'})
       });

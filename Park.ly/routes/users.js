@@ -67,7 +67,21 @@ router.delete('/:id', function(req, res, next) {
 
 // User login route ******************* PENDING *******DECIDE AUTHENTICATION TECHNOLOGY FIRST**********
 router.post('/login', function(req, res, next) {
-  res.send('submitting login form');
+  console.log(req.body)
+  models.User.findOne({where:{email: req.body.username}})
+  .then(function(user){
+    // console.log(user.dataValues.password)
+    bcrypt.compare(req.body.password, user.dataValues.password, function(err, res){
+        console.log(req.body.password)
+        console.log(user.dataValues.password)
+      if(res === true){
+        console.log('you have logged in successfully')
+      } else {
+        console.log('log in failed')
+      }
+    })
+  // res.send('submitting login form');
+  })
 });
 
 // User logout route ******************* PENDING *******DECIDE AUTHENTICATION TECHNOLOGY FIRST**********

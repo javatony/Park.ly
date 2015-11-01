@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
+router.use(function(req, res, next) {
+   res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+   next();
+})
 // User creation route
 router.post('/', function(req, res) {
   models.User.create(req.body)
@@ -55,3 +59,5 @@ router.get('/logout', function(req, res, next) {
 });
 
 module.exports = router;
+
+

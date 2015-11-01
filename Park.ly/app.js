@@ -9,8 +9,18 @@ var routes = require('./routes/index');
 var reservations = require('./routes/reservations');
 var spots = require('./routes/spots');
 var users = require('./routes/users');
-
+var cors = require('cors');
 var app = express();
+
+//enabling CORS Pre-flight
+app.options('/users/login', cors()); // enable pre-flight request for DELETE request
+app.delete('/products/:id', cors(), function(req, res, next){
+  res.json({msg: 'This is CORS-enabled for all origins!'});
+});
+
+app.listen(3001, function(){
+  console.log('CORS-enabled web server listening on port 3000');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,10 +29,44 @@ app.set('view engine', 'hjs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// Enable
+app.all('*', function(req, res,next) {
+
+
+    /**
+     * Response settings
+     * @type {Object}
+     */
+    var responseSettings = {
+        "AccessControlAllowOrigin": req.headers.origin,
+        "AccessControlAllowHeaders": "Content-Type,X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5,  Date, X-Api-Version, X-File-Name",
+        "AccessControlAllowMethods": "POST, GET, PUT, DELETE, OPTIONS",
+        "AccessControlAllowCredentials": true
+    };
+
+    /**
+     * Headers
+     */
+    res.header("Access-Control-Allow-Credentials", responseSettings.AccessControlAllowCredentials);
+    res.header("Access-Control-Allow-Origin",  responseSettings.AccessControlAllowOrigin);
+    res.header("Access-Control-Allow-Headers", (req.headers['access-control-request-headers']) ? req.headers['access-control-request-headers'] : "x-requested-with");
+    res.header("Access-Control-Allow-Methods", (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : responseSettings.AccessControlAllowMethods);
+
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+
+
+});
+
+// ---------------------------------
 
 app.use('/', routes);
 app.use('/reservations', reservations);

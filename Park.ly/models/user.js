@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        User.hasMany(Spot),
-        user.hasMany(Reservation);
+        User.hasMany(models.Spot),
+        User.hasMany(models.Reservation);
         // associations can be defined here
       }
     }

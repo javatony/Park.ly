@@ -1,0 +1,24 @@
+
+<ul>
+  {{#reservations}}
+    <li>
+      {{start_date_time}}
+    </li>
+  {{/reservations}}
+</ul>
+
+<ul>
+  {{#spots}}
+    <li>
+      {{address}}
+    </li>
+  {{/spots}}
+</ul>
+
+
+
+
+    <form action="/users/{{user_id}}" method="delete">
+      <input type="submit" value="delete">
+    </form>
+

@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var reservations = require('./routes/reservations');
+var spots = require('./routes/spots');
 var users = require('./routes/users');
 var cors = require('cors');
 var app = express();
@@ -67,6 +69,8 @@ app.all('*', function(req, res,next) {
 // ---------------------------------
 
 app.use('/', routes);
+app.use('/reservations', reservations);
+app.use('/spots', spots);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

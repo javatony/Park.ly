@@ -5,8 +5,40 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+
+    <ul>
+      hi
+
+
+      {{! user name }}
+      {{#users}}
+        <li> Name: {{first_name}}
+          {{! spots }}
+          <ol> Available Spots
+            {{#Spots}}
+              <li>{{address}}</li>
+            {{/Spots}}
+          </ol>
+          {{! revervations }}
+          <ol> Upcoming Reservations
+            {{#Reservations}}
+              <li>{{start_date_time}}</li>
+            {{/Reservations}}
+          </ol>
+        </li>
+      {{/users}}
+    </ul>
+
+    <form action="/users" method="post">
+      <input type="text" name="first_name">
+      <input type="text" name="last_name">
+      <input type="text" name="email">
+      <input type="text" name="password">
+      <input type="submit" value="Submit">
+    </form>
+
+
+
   </body>
 </html>
 

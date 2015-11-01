@@ -15,7 +15,9 @@ router.get('/', function(req, res, next) {
   // show all available spots
 
   // show current user's spots & reservations if logged in
-  models.User.findAll({
+
+  var user_id = 1
+  models.User.findById(user_id, {
     include: [ models.Spot,models.Reservation ]})
     .then(function(users) {
       res.render('index', {

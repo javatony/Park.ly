@@ -12,6 +12,8 @@ var users = require('./routes/users');
 var cors = require('cors');
 var app = express();
 
+
+
 //enabling CORS Pre-flight
 app.options('/users/login', cors()); // enable pre-flight request for DELETE request
 app.delete('/products/:id', cors(), function(req, res, next){

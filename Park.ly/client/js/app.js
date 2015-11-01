@@ -3,11 +3,13 @@ var app = angular.module('DiscoveryApp', ['ngRoute']);
 app.config(function ($routeProvider){ $routeProvider
   .when('/users/login', {
     controller: 'LoginController',
-    templateUrl: 'js/views/login.html'
+    templateUrl: 'js/views/login.html',
+    // controllerAs: 'vm'
   })
   .when('/users/register', {
     controller: 'RegisterController',
-    templateUrl: 'js/views/register.html'
+    templateUrl: 'js/views/register.html',
+    // controllerAs: 'vm'
   })
   .when('/spots/show', {
     controller: 'ShowController',
@@ -37,4 +39,9 @@ app.config(function ($routeProvider){ $routeProvider
     redirectTo: '/maps'
   })
 })
+
+app.config(function($httpProvider) {
+    //Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
+});
 

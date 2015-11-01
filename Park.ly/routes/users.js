@@ -8,6 +8,7 @@ router.use(function(req, res, next) {
 })
 // User creation route
 router.post('/', function(req, res) {
+  console.log(req.body)
   models.User.create(req.body)
   res.send({ message: 'created!!!!'})
   // res.redirect('../');

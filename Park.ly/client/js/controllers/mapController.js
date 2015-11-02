@@ -12,18 +12,37 @@ app.controller('MapController', ['$scope', '$http', function($scope, $http) {
   $scope.processForm = function(){
 
     var data = angular.copy($scope.formData);
-
+    console.log(data)
     $http({
       method: 'POST',
       // withCredentials: true,
-      url: 'http://localhost:3001/index',
+      url: 'http://localhost:3001/',
       data: data,
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
       }
     })
     .success(function(response){
+      response.forEach(function(spot){
+        spot.type = "Feature"
+        spot.geometry = {
+        "type": "Point",
+        "coordinates": [spot.lng,spot.lat]
+      },
+        spot.properties = {
+          "image": spot.url,
+          "title": "Mapbox DC",
+          "description": spot.description,
+          "marker-color": "#fc4353",
+          "marker-size": "large",
+          "marker-symbol": "parking",
+          "city": spot.address
+        }
+      })
       console.log(response)
+      map.remove();
+      $('#mapStarter').append('<div id="map"></div>');
+      renderMap(response);
     })
     .error(function(response){
       console.log(response)

@@ -6,20 +6,41 @@ function renderMap(responseCoords){
   var devLat = 37.784619;
   var devLong = -122.397236;
 
+
 //THIS NEEDS CHECKING
   if(responseCoords){
-    var map = L.mapbox.map('map', 'mapbox.streets')
-        .setView(["**lat**", "**lng**"], 15);
+    // map.remove();
+    // $('#mapStarter').append('<div id="map"></div>');
+    var map = L.mapbox.map('map', 'mapbox.streets');
+        // .setView(["**lat**", "**lng**"], 15);
 
 
-      var marker = L.marker(new L.LatLng("**lat**", "**lng**"),{
-      draggable:false
-      });
+      // var marker = L.marker(new L.LatLng("**lat**", "**lng**"),{
+      // draggable:false
+      // });
 
-      marker.bindPopup('Location').openPopup();
-      marker.addTo(map);
+      // marker.bindPopup('Location').openPopup();
+      // marker.addTo(map);
 
-    myLayer.setGeoJSON(geojson);
+  var myLayer = L.mapbox.featureLayer().addTo(map);
+
+  myLayer.on('layeradd', function(e) {
+    var marker = e.layer,
+        feature = marker.feature;
+
+    // Create custom popup content. Chande properties.description to add whatever you like
+    var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
+                            '<img src="' + feature.properties.image + '" />' +
+                            feature.properties.description +
+                        '</a>';
+
+    // http://leafletjs.com/reference.html#popup
+    marker.bindPopup(popupContent,{
+        closeButton: true,
+        minWidth: 340
+    });
+  });
+    myLayer.setGeoJSON(responseCoords);
 
   }else if(latitude != 0){
       var map = L.mapbox.map('map', 'mapbox.streets')
@@ -67,7 +88,7 @@ function renderMap(responseCoords){
     });
   });
 
-    myLayer.setGeoJSON(geojson);
+    // myLayer.setGeoJSON(geojson);
   // ********************************************
   // Upon ajaxing locations from database, it can be added to the map from success response sending back json.
   // ********************************************

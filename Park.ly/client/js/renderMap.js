@@ -88,6 +88,7 @@ function renderMap(responseCoords){
     });
   });
 
+  myLayer.setGeoJSON(geojson);
     // myLayer.setGeoJSON(geojson);
   // ********************************************
   // Upon ajaxing locations from database, it can be added to the map from success response sending back json.

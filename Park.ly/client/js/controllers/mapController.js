@@ -1,5 +1,47 @@
 app.controller('MapController', ['$scope', '$http', function($scope, $http) {
 
+  // define initialize function for page load
+  var initi = function(){
+    $http({
+      method: 'GET',
+      url: 'http://localhost:3001/',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+    .success(function(allSpots){
+
+      newLat = 37.7846334;
+      newLng = -122.3974137;
+
+      allSpots.forEach(function(spot){
+        spot.type = "Feature"
+        spot.geometry = {
+        "type": "Point",
+        "coordinates": [spot.lng,spot.lat]
+      },
+        spot.properties = {
+          "image": spot.url,
+          "title": "Mapbox DC",
+          "description": spot.description,
+          "marker-color": "#fc4353",
+          "marker-size": "large",
+          "marker-symbol": "parking",
+          "city": spot.address
+        }
+      })
+      map.remove();
+      $('#mapStarter').append('<div id="map"></div>');
+      renderMap(allSpots)
+    })
+    .error(function(error){
+      console.log(error);
+    })
+  };
+
+  // run initialize function on page load
+  initi();
+  // console.log(geojson)
   renderMap();
   //Use my location
   $("#myLocation").on('click', function(){

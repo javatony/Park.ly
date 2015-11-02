@@ -15,17 +15,20 @@ router.get('/', function(req, res, next) {
   // models.Reservation.create({start_date_time: new Date(2012,10,01,09,00), end_date_time: new Date(2012,10,05,20,00), UserId: 1, SpotId: 3})
 
   // show all available spots
-
+  models.Spot.findAll().done(function(data){
+    // console.log("hello")
+    res.send(data)
+  })
   // show current user's spots & reservations if logged in
 
-  var user_id = 1
-  models.User.findById(user_id, {
-    include: [ models.Spot,models.Reservation ]})
-    .then(function(users) {
-      res.render('index', {
-      users: users
-    });
-  });
+  // var user_id = 1
+  // models.User.findById(user_id, {
+  //   include: [ models.Spot,models.Reservation ]})
+  //   .then(function(users) {
+  //     res.render('index', {
+  //     users: users
+  //   });
+  // });
 });
 
 /* Sorting spot algorithim */

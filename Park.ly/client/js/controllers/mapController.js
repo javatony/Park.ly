@@ -23,6 +23,7 @@ app.controller('MapController', ['$scope', '$http', function($scope, $http) {
         spot.properties = {
           "image": spot.url,
           "title": "Mapbox DC",
+          "url": ('#/spots/' + spot.id + '/show'),
           "description": spot.description,
           "marker-color": "#fc4353",
           "marker-size": "large",
@@ -82,6 +83,7 @@ app.controller('MapController', ['$scope', '$http', function($scope, $http) {
           spot.properties = {
             "image": spot.url,
             "title": "Mapbox DC",
+            "url": ('#/spots/' + spot.id + '/show'),
             "description": spot.description,
             "marker-color": "#fc4353",
             "marker-size": "large",

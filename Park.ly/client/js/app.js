@@ -34,8 +34,10 @@ app.config(function($httpProvider) {
 });
 
 function checkLogin(){
-  if (document.cookie.match(/token/)[0] === "token") {
-    return true
+  if (document.cookie != "") {
+    if (document.cookie.match(/token/)[0] === "token") {
+      return true
+    }
   } else {
     return false
   }

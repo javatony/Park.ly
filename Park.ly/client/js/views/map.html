@@ -2,7 +2,13 @@
 <div id="mapStarter"></div>
 <div id="map"></div>
 <button id="myLocation">Use my location</button>
-<form id="address" action="#">
-<input id="addressField" type="text" name="search" placeholder="Address" >
-<input type="submit" value="Search">
+<form id="address" action="#" ng-submit="processForm()" role="form">
+  <input id="addressField" ng-model="formData.address" type="text" name="search" placeholder="Address">
+  <label>Start Date</label>
+  <input id="startDate" ng-model="formData.start_date_time" type="datetime-local" name="startDate">
+  <label>End Date</label>
+  <input id="endDate" ng-model="formData.end_date_time" type="datetime-local" name="endDate">
+  <input id="lat" ng-model="formData.lat" type="hidden" name="lat" ng-value="lat" />
+  <input id="long" ng-model="formData.long" type="hidden" name="long" ng-value="long" />
+  <input type="submit" value="Search">
 </form>

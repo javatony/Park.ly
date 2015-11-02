@@ -55,8 +55,9 @@ router.post('/', function(req, res, next){
 
           if (spots[i].dataValues.reservations === undefined ){
             console.log("i is...." + i)
+            console.log(spots.length)
             available_spots.push(spots[i])
-            if (i === spots.length){
+            if (i === spots.length - 1){
               console.log("ii =" + i)
               console.log("aasdvhjavdbjashdjkasjdsakd")
               res.send(available_spots)

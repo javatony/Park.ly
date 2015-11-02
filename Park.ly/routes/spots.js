@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var jquery = require('jquery');
 
 // Get all spots route
 router.get('/', function(req, res) {
@@ -15,7 +16,11 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   console.log(req.body)
   // models.Spot.create(req.body)
-  res.send({ message: 'created!!!!'})
+  models.Spot.findAll().done(function(spots){
+    console.log("inside promise")
+    res.send(spots)
+  })
+  // console.log("inside post route")
   // res.redirect('../');
 });
 

@@ -1,10 +1,17 @@
 <h1>Post Your Spot Here</h1>
 
 <hr>
-
+<!-- Spot for submitting a post request to create a Spot -->
 <form ng-submit="processForm()">
+
     <label for="address">Address</label><br>
     <input name="addresss" type="text" ng-model="formData.address"><br>
+
+    <label for="price">Price</label><br>
+    <input name="price" type="number" ng-model="formData.price"><br>
+
+    <label for="description">Description</label><br>
+    <textarea name="description" type="text" ng-model="formData.description"></textarea><br>
 
     <label for="start_date_time">Start Date</label><br>
     <input name="start_date_time" type="datetime-local" ng-model="formData.start_date_time"><br>
@@ -12,8 +19,11 @@
     <label for="end_date_time">End Date</label><br>
     <input name="end_date_time" type="datetime-local" ng-model="formData.end_date_time"><br>
 
-    <label for="price">Price</label><br>
-    <input name="price" type="number" ng-model="formData.price"><hr>
+    <label for="url">Image Url:</label><br>
+    <input name="url" type="text" ng-model="formData.url"><br>
+
+    <hr>
+
 
     <input type="submit" value="Submit">
 </form>

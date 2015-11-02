@@ -55,5 +55,13 @@ router.delete('/:id', function(req, res, next) {
   })
 });
 
+//Reserving a spot. Still needs start date and end date!!!!!!
+router.post('/:id/reservation', function(req, res, next){
+  models.Reservation.create({SpotId:req.params.id, start_date_time: req.body.start_date_time,end_date_time: req.body.end_date_time,UserId: req.body.userId})
+  .then(function(){
+    res.send({ message: 'created!!!!'});
+  })
+})
+
 
 module.exports = router;

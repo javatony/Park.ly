@@ -53,10 +53,28 @@ function renderMap(responseCoords){
 
       marker.bindPopup('Current user').openPopup();
       marker.addTo(map);
+      var myLayer = L.mapbox.featureLayer().addTo(map);
+
+    myLayer.on('layeradd', function(e) {
+      var marker = e.layer,
+          feature = marker.feature;
+
+      // Create custom popup content. Chande properties.description to add whatever you like
+      var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
+                              '<img src="' + feature.properties.image + '" />' +
+                              feature.properties.description + "HELLO"+
+                          '</a>';
+
+      // http://leafletjs.com/reference.html#popup
+      marker.bindPopup(popupContent,{
+          closeButton: true,
+          minWidth: 340
+      });
+    });
 
       myLayer.setGeoJSON(geojson);
 
-    }else{
+    }else{ //First reach the site
       var map = L.mapbox.map('map', 'mapbox.streets')
       .setView([devLat, devLong], 15);
       // .featureLayer.setGeoJSON(geojson);
@@ -66,7 +84,7 @@ function renderMap(responseCoords){
       });
       marker.bindPopup('Head Quarters').openPopup();
       marker.addTo(map);
-  }
+
 
 
   var myLayer = L.mapbox.featureLayer().addTo(map);
@@ -78,7 +96,7 @@ function renderMap(responseCoords){
     // Create custom popup content. Chande properties.description to add whatever you like
     var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
                             '<img src="' + feature.properties.image + '" />' +
-                            feature.properties.description +
+                            feature.properties.description + "HELLO"+
                         '</a>';
 
     // http://leafletjs.com/reference.html#popup
@@ -89,6 +107,8 @@ function renderMap(responseCoords){
   });
 
   myLayer.setGeoJSON(geojson);
+}
+
     // myLayer.setGeoJSON(geojson);
   // ********************************************
   // Upon ajaxing locations from database, it can be added to the map from success response sending back json.

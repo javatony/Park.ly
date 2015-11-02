@@ -44,6 +44,13 @@
       <input type="submit" value="Submit">
     </form>
 
+    <form action="/spots/2/reservation" method="post">
+      <input type="text" name="userId"><br>
+      <input type="datetime-local" name="start_date_time"><br>
+      <input type="datetime-local" name="end_date_time"><br>
+      <input type="submit" value="Submit">
+    </form>
+
 
   </body>
 </html>

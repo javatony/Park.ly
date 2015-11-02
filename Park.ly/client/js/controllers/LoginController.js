@@ -13,10 +13,11 @@ app.controller('LoginController', ['$scope', '$http', function($scope, $http){
       }
     })
     .success(function(response){
-      console.log(response)
+      document.cookie = 'token=' + response;
+      logout()
+      console.log(checkLogin())
     })
     .error(function(response){
-      console.log(response)
       console.log("you got an error")
     })
   }

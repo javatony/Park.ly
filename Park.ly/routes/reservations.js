@@ -6,6 +6,7 @@ var models = require('../models');
 
 // make reservation ***************PENDING********DATETIME ALGORITHM
 router.post('/', function(req, res) {
+  models.Spot.findById(req)
   models.Reservation.create(req.body)
   res.send({ message: 'created!!!!'})
   // res.redirect('../');

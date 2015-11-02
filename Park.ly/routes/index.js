@@ -9,10 +9,10 @@ router.get('/', function(req, res, next) {
   // models.User.create({first_name: "Daniel", last_name: "Huang", email: "1@1.com", password:"12345678"})
   // models.Spot.create({address: "123 123rd ave", start_date_time: new Date(1999,12,12), end_date_time: new Date(2007,12,23), price: 20, UserId: 1})
   // models.Spot.create({address: "123 Test St.", start_date_time: new Date(2015,11,01,09,00), end_date_time: new Date(2015,11,01,10,00), price: 90, UserId: 2})
-  // models.Reservation.create({start_date_time: new Date(2015,11,01,09,00), end_date_time: new Date(2015,11,01,20,00), UserId: 1, SpotId: 8})
-  // models.Reservation.create({start_date_time: new Date(2015,11,04,09,00), end_date_time: new Date(2015,11,20,20,00), UserId: 1, SpotId: 8})
-  // models.Reservation.create({start_date_time: new Date(2015,12,01,09,00), end_date_time: new Date(2016,2,01,20,00), UserId: 1, SpotId: 8})
-  // models.Reservation.create({start_date_time: new Date(2016,4,01,09,00), end_date_time: new Date(2016,8,01,20,00), UserId: 1, SpotId: 8})
+  // models.Reservation.create({start_date_time: new Date(2009,06,01,09,00), end_date_time: new Date(2009,11,01,20,00), UserId: 1, SpotId: 2})
+  // models.Reservation.create({start_date_time: new Date(2008,08,04,09,00), end_date_time: new Date(2008,12,20,20,00), UserId: 1, SpotId: 2})
+  // models.Reservation.create({start_date_time: new Date(2000,12,01,09,00), end_date_time: new Date(2005,2,01,20,00), UserId: 1, SpotId: 7})
+  // models.Reservation.create({start_date_time: new Date(2012,10,01,09,00), end_date_time: new Date(2012,10,05,20,00), UserId: 1, SpotId: 3})
 
   // show all available spots
 
@@ -43,9 +43,6 @@ router.post('/', function(req, res, next){
     include: [ models.Reservation ]
 
     for (var i = 0; i < spots.length; i++){
-      // if( i == spots.length - 1  ){
-      //   res.send(available_spots)
-      // }
 
       //console.log("Spots length is "+ spots.length)
       console.log("I is currently " + i)
@@ -68,9 +65,11 @@ router.post('/', function(req, res, next){
 
         models.Reservation.findAll({where:{SpotId: spots[i].id}})
         .then(function(reservations){
+          console.log("In model promise")
           for (var j = 0; j < reservations.length; j++){
             if (input_start < reservations[j].end_date_time && reservations[j].start_date_time < input_end){
               // j = reservations.length - 1
+              console.log("In first if")
               break; //if there is a conflict with reservation, break out of loop
             }
             if (j === (reservations.length - 1)){

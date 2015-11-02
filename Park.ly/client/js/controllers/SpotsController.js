@@ -1,5 +1,8 @@
-app.controller('SpotsController', ['$scope', '$http', function($scope, $http){
+app.controller('SpotsController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
   $scope.formData = {}
+
+  // Send a post request to server for creation
+
   $scope.processForm = function(){
     // copying form data
     var data = angular.copy($scope.formData)
@@ -36,12 +39,33 @@ app.controller('SpotsController', ['$scope', '$http', function($scope, $http){
         console.log("you got an error")
       })
     })
+  }// end of process form
 
-
-
-
-
+  if($routeParams.s_id){
+    console.log($routeParams.s_id)
+    $http({
+      method: 'GET',
+      url: ('http://localhost:3001/spots/' + $routeParams.s_id),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+    .success(function(response){
+      console.log(response)
+      $scope.spot = response
+    })
+    .error(function(error){
+      console.log("Your error is response from spot show route " + error)
+    })
   }
+  // $scope.makeReservation() = function(){
+
+  //   $http({
+  //     method: 'POST',
+  //     url: 'http://localhost:3001/spots/reservations/'
+  //   })
+  // }
+
 }]);
 
 

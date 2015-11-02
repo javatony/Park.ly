@@ -11,6 +11,7 @@ var reservations = require('./routes/reservations');
 var spots = require('./routes/spots');
 var users = require('./routes/users');
 var cors = require('cors');
+var session = require('client-sessions');
 var app = express();
 
 
@@ -68,6 +69,14 @@ app.all('*', function(req, res,next) {
 
 
 });
+
+app.use(session({
+  cookieName: 'session',
+  secret: 'tony the tiger',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5* 60 * 1000
+}));
+
 
 // ---------------------------------
 

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 var bcrypt = require('bcrypt');
+var session = require('client-sessions');
 
 router.use(function(req, res, next) {
    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -65,24 +66,29 @@ router.delete('/:id', function(req, res, next) {
   })
 });
 
-// User login route ******************* PENDING *******DECIDE AUTHENTICATION TECHNOLOGY FIRST**********
+// User login route
 router.post('/login', function(req, res, next) {
   console.log(req.body)
   models.User.findOne({where:{email: req.body.username}})
   .then(function(user){
-    // console.log(user.dataValues.password)
-    bcrypt.compare(req.body.password, user.dataValues.password, function(err, res){
-        console.log(req.body.password)
-        console.log(user.dataValues.password)
-      if(res === true){
+    bcrypt.compare(req.body.password, user.dataValues.password, function(err, results){
+      if(results === true){
         console.log('you have logged in successfully')
+        // issue encrypted token upon login
+        bcrypt.genSalt(8, function(err, salt) {
+          var userIdStr = user.dataValues.id.toString()
+          bcrypt.hash(userIdStr, salt, function(err, token) {
+          res.send(token + userIdStr)
+          });
+        });
       } else {
         console.log('log in failed')
       }
     })
-  // res.send('submitting login form');
   })
 });
+
+
 
 // User logout route ******************* PENDING *******DECIDE AUTHENTICATION TECHNOLOGY FIRST**********
 router.get('/logout', function(req, res, next) {

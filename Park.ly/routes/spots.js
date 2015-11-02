@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
 // Spot creation route
 router.post('/', function(req, res) {
   console.log(req.body)
-  // models.Spot.create(req.body)
+  models.Spot.create(req.body)
   models.Spot.findAll().done(function(spots){
     console.log("inside promise")
     res.send(spots)

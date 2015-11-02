@@ -49,7 +49,7 @@ router.post('/', function(req, res, next){
 
       //console.log("Spots length is "+ spots.length)
       console.log("I is currently " + i)
-      if (input_end <= spots[i].start_date_time || input_start >= spots[i].end_date_time){
+      if (input_end > spots[i].end_date_time || input_start < spots[i].start_date_time) {
         if (i === spots.length - 1){
           res.send(available_spots)
         }

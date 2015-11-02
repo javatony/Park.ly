@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var cheese = require('./routes/cheese');
 var reservations = require('./routes/reservations');
 var spots = require('./routes/spots');
 var users = require('./routes/users');
@@ -59,7 +60,7 @@ app.all('*', function(req, res,next) {
     res.header("Access-Control-Allow-Methods", (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : responseSettings.AccessControlAllowMethods);
 
     if ('OPTIONS' == req.method) {
-        res.send(200);
+        res.sendStatus(200);
     }
     else {
         next();
@@ -74,6 +75,8 @@ app.use('/', routes);
 app.use('/reservations', reservations);
 app.use('/spots', spots);
 app.use('/users', users);
+app.use('/cheese',cheese);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

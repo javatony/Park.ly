@@ -2,10 +2,19 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
+// Get all spots route
+router.get('/', function(req, res) {
+  models.Spot.findAll().then(function(spots){
+    res.send(spots)
+  })
+  // res.send({ message: 'created!!!!'})
+  // res.redirect('../');
+});
 
 // Spot creation route
 router.post('/', function(req, res) {
-  models.Spot.create(req.body)
+  console.log(req.body)
+  // models.Spot.create(req.body)
   res.send({ message: 'created!!!!'})
   // res.redirect('../');
 });

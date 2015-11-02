@@ -15,6 +15,10 @@ app.config(function ($routeProvider){ $routeProvider
     controller: 'ShowController',
     templateUrl: 'js/views/show.html'
   })
+  .when('/spots/new',{
+    controller: 'SpotsController',
+    templateUrl: 'js/views/create_spot.html'
+  })
   .when('/maps', {
     controller: 'MapController',
     templateUrl: 'js/views/map.html'

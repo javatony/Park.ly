@@ -37,6 +37,12 @@
       <input type="submit" value="Submit">
     </form>
 
+    <form action="/" method="post">
+      Address: <input type="text" name="address"> <br>
+      Start Date/Time: <input type="datetime-local" name="start_date_time"> <br>
+      End Date/Time: <input type="datetime-local" name="end_date_time"> <br>
+      <input type="submit" value="Submit">
+    </form>
 
 
   </body>

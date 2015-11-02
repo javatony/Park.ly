@@ -11,16 +11,16 @@ function renderMap(responseCoords){
   if(responseCoords){
     // map.remove();
     // $('#mapStarter').append('<div id="map"></div>');
-    var map = L.mapbox.map('map', 'mapbox.streets');
-        // .setView(["**lat**", "**lng**"], 15);
+    var map = L.mapbox.map('map', 'mapbox.streets')
+        .setView([newLat, newLng], 15);
 
 
-      // var marker = L.marker(new L.LatLng("**lat**", "**lng**"),{
-      // draggable:false
-      // });
+      var marker = L.marker(new L.LatLng(newLat, newLng),{
+      draggable:false
+      });
 
-      // marker.bindPopup('Location').openPopup();
-      // marker.addTo(map);
+      marker.bindPopup('Location').openPopup();
+      marker.addTo(map);
 
   var myLayer = L.mapbox.featureLayer().addTo(map);
 

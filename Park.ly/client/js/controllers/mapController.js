@@ -13,43 +13,53 @@ app.controller('MapController', ['$scope', '$http', function($scope, $http) {
 
     var data = angular.copy($scope.formData);
     console.log(data)
-    $http({
-      method: 'POST',
-      // withCredentials: true,
-      url: 'http://localhost:3001/',
-      data: data,
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      }
-    })
-    .success(function(response){
-      response.forEach(function(spot){
-        spot.type = "Feature"
-        spot.geometry = {
-        "type": "Point",
-        "coordinates": [spot.lng,spot.lat]
-      },
-        spot.properties = {
-          "image": spot.url,
-          "title": "Mapbox DC",
-          "description": spot.description,
-          "marker-color": "#fc4353",
-          "marker-size": "large",
-          "marker-symbol": "parking",
-          "city": spot.address
+    var rawAddress =  data.address;
+    var finalAddress = rawAddress.split(' ').join('+');
+
+    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyCi72FpZOhti2We62SYVS8NQ9pQPO9Wk1E", function(results){
+      newLat = results.results[0].geometry.location.lat;
+      newLng = results.results[0].geometry.location.lng;
+
+    }).done(function(){
+      $http({
+        method: 'POST',
+        // withCredentials: true,
+        url: 'http://localhost:3001/',
+        data: data,
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
         }
       })
-      console.log(response)
-      map.remove();
-      $('#mapStarter').append('<div id="map"></div>');
-      renderMap(response);
-    })
-    .error(function(response){
-      console.log(response)
-      console.log("you got an error")
+      .success(function(response){
+        response.forEach(function(spot){
+          spot.type = "Feature"
+          spot.geometry = {
+          "type": "Point",
+          "coordinates": [spot.lng,spot.lat]
+        },
+          spot.properties = {
+            "image": spot.url,
+            "title": "Mapbox DC",
+            "description": spot.description,
+            "marker-color": "#fc4353",
+            "marker-size": "large",
+            "marker-symbol": "parking",
+            "city": spot.address
+          }
+        })
+        console.log(response)
+        map.remove();
+        $('#mapStarter').append('<div id="map"></div>');
+        renderMap(response);
+        })
+        .error(function(response){
+        console.log(response)
+        console.log("you got an error")
 
-    });
-
+       });
+      }).fail(function(){
+        console.log("Fail");
+      });
 
     // var rawAddress =  data.address;
     // var finalAddress = rawAddress.split(' ').join('+');

@@ -32,7 +32,8 @@ function renderMap(responseCoords){
 
       marker.bindPopup('Current user').openPopup();
       marker.addTo(map);
-    myLayer.setGeoJSON(geojson);
+
+      myLayer.setGeoJSON(geojson);
 
     }else{
       var map = L.mapbox.map('map', 'mapbox.streets')

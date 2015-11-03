@@ -12,7 +12,7 @@
 
 <h3>Your Spots</h3>
 <ul ng-repeat="spot in spots">
-  <li><b>Address: </b>{{ spot.address }}</li>
+  <li><b>Address: </b><a href="#/spots/{{ spot.id }}/show">{{ spot.address }}</a></li>
   <li><b>Price: </b>{{ spot.price }}</li>
   <li><b>Description: </b>{{ spot.description }}</li>
   <li>Available from: {{ spot.start_date_time | date }} to {{ spot.end_date_time | date }}</li>
@@ -24,3 +24,7 @@
     </ul>
   </li>
 </ul>
+
+<hr>
+
+<a href="#/maps">Home</a>

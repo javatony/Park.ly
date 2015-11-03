@@ -11,6 +11,6 @@
 <p>{{ spot.spot.description }}</p>
 <h2>Distance/Time: </h2>
 <p>{{ spot.spot.distance }}</p>
-<a href="http://localhost:3001/spots/{{spot.spot.id}}/reservation"><button>Reserve</button></a>
+<button ng-click="makeReservation()">Reserve</button>
 <hr>
 <a href="#/maps">Back</a>

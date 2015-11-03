@@ -1,4 +1,4 @@
-app.controller('SpotsController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies', function($scope, $http, $routeParams, $cookies){
   $scope.formData = {}
 
   // Send a post request to server for creation
@@ -58,13 +58,27 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', function($
       console.log("Your error is response from spot show route " + error)
     })
   }
-  // $scope.makeReservation() = function(){
-
-  //   $http({
-  //     method: 'POST',
-  //     url: 'http://localhost:3001/spots/reservations/'
-  //   })
-  // }
+  $scope.makeReservation = function(){
+    var data = {
+      userId: 1, //NEED TO UPDATE WITH USER ID PULLED FROM COOKIES
+      start_date_time: $cookies.get('start'),
+      end_date_time: $cookies.get('end')
+    }
+    $http({
+      method: 'POST',
+      url: 'http://localhost:3001/spots/' + $routeParams.s_id + '/reservation',
+      data: data,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+    .success(function(response){
+      console.log(response)
+    })
+    .error(function(err){
+      console.log('Reservation failed')
+    })
+  }
 
 }]);
 

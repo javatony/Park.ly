@@ -1,4 +1,4 @@
-var app = angular.module('Parkly', ['ngRoute']);
+var app = angular.module('Parkly', ['ngRoute', 'ngCookies']);
 
 app.config(function ($routeProvider){ $routeProvider
   .when('/users/login', {
@@ -10,6 +10,10 @@ app.config(function ($routeProvider){ $routeProvider
     controller: 'RegisterController',
     templateUrl: 'js/views/register.html',
     // controllerAs: 'vm'
+  })
+  .when('/users/:u_id/profile',{
+    controller: 'LoginController',
+    templateUrl: 'js/views/profile.html'
   })
   .when('/spots/show', {
     controller: 'ShowController',
@@ -37,16 +41,3 @@ app.config(function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
 });
 
-function checkLogin(){
-  if (document.cookie != "") {
-    if (document.cookie.match(/token/)[0] === "token") {
-      return true
-    }
-  } else {
-    return false
-  }
-}
-
-function logout(){
-  document.cookie += ";expires=Thu, 01 Jan 1970 00:00:00 GMT"
-}

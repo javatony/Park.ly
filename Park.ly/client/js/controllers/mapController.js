@@ -16,7 +16,7 @@ app.controller('MapController', ['$scope', '$http', function($scope, $http) {
     var rawAddress =  data.address;
     var finalAddress = rawAddress.split(' ').join('+');
 
-    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyCi72FpZOhti2We62SYVS8NQ9pQPO9Wk1E", function(results){
+    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyDJzr8Lfgi5DDcgd41Cx3Vj-Z3bfvAzKGw", function(results){
       newLat = results.results[0].geometry.location.lat;
       newLng = results.results[0].geometry.location.lng;
 

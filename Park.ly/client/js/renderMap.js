@@ -179,4 +179,3 @@ function renderMap(responseCoords, test){
   console.log("Rendering Map...");
 }
 
-

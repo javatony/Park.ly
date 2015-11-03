@@ -23,7 +23,6 @@ var geojson = [
       },
       "properties": {
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Cherry_Blossoms_and_Washington_Monument.jpg/320px-Cherry_Blossoms_and_Washington_Monument.jpg",
-        "url": "/spot/4",
         "title": "Mapbox SF",
         "description": "155 9th St, San Francisco",
         "marker-color": "#fc4353",

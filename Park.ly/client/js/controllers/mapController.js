@@ -1,5 +1,47 @@
-app.controller('MapController', ['$scope', '$http', function($scope, $http) {
+app.controller('MapController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies) {
 
+  // define initialize function for page load
+  var initi = function(){
+    $http({
+      method: 'GET',
+      url: 'http://localhost:3001/',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+    .success(function(allSpots){
+
+      newLat = 37.7846334;
+      newLng = -122.3974137;
+
+      allSpots.forEach(function(spot){
+        spot.type = "Feature"
+        spot.geometry = {
+        "type": "Point",
+        "coordinates": [spot.lng,spot.lat]
+      },
+        spot.properties = {
+          "image": spot.url,
+          "title": "Mapbox DC",
+          "description": spot.description,
+          "marker-color": "#fc4353",
+          "marker-size": "large",
+          "marker-symbol": "parking",
+          "city": spot.address
+        }
+      })
+      map.remove();
+      $('#mapStarter').append('<div id="map"></div>');
+      renderMap(allSpots, "hello")
+    })
+    .error(function(error){
+      console.log(error);
+    })
+  };
+
+  // run initialize function on page load
+  initi();
+  // console.log(geojson)
   renderMap();
   //Use my location
   $("#myLocation").on('click', function(){
@@ -9,14 +51,20 @@ app.controller('MapController', ['$scope', '$http', function($scope, $http) {
   });
 
   $scope.formData = {}
+
+  // Get data from query search and post to server to filter
   $scope.processForm = function(){
 
     var data = angular.copy($scope.formData);
     console.log(data)
     var rawAddress =  data.address;
     var finalAddress = rawAddress.split(' ').join('+');
+    //SET QUERY DATES TO COOKIE
 
-    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyCi72FpZOhti2We62SYVS8NQ9pQPO9Wk1E", function(results){
+    $cookies.put("start", data.start_date_time)
+    $cookies.put("end", data.end_date_time)
+
+    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyC7fCLRRT6scDos0V3pHanuNsmvSX_2dtc", function(results){
       newLat = results.results[0].geometry.location.lat;
       newLng = results.results[0].geometry.location.lng;
 
@@ -40,6 +88,7 @@ app.controller('MapController', ['$scope', '$http', function($scope, $http) {
           spot.properties = {
             "image": spot.url,
             "title": "Mapbox DC",
+            "url": ('#/spots/' + spot.id + '/show'),
             "description": spot.description,
             "marker-color": "#fc4353",
             "marker-size": "large",

@@ -33,13 +33,15 @@ router.put('/:id', function(req, res, next) {
 
 // User profile route
 router.get('/:id', function(req, res, next) {
-  models.Reservation.findAll({where:{UserId: req.params.id}})
+  models.Reservation.findAll({where:{UserId: req.params.id},
+  include: [models.Spot]})
   .then(function(reservations){
-    models.Spot.findAll({where:{UserId: req.params.id}})
+    models.Spot.findAll({where:{UserId: req.params.id},
+    include: [ models.Reservation, models.User ]})
     .then(function(spots){
       res.send({
-        reservations: reservations,
-        spots: spots
+        spots: spots,
+        reservations: reservations
       });
     })
   })

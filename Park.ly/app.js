@@ -11,6 +11,7 @@ var reservations = require('./routes/reservations');
 var spots = require('./routes/spots');
 var users = require('./routes/users');
 var cors = require('cors');
+var jquery = require('jquery');
 var app = express();
 
 

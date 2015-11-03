@@ -1,8 +1,16 @@
-<h2>Address: {{ test.address }}</h2>
-<h2>Price: {{ test.price }}</h2>
+<h2>Address: </h2>
+<p>{{ spot.spot.address }}</p>
+<h2>Price: </h2>
+<p>{{ spot.spot.price }}</p>
 <div class="photo-container">
-<h2>Photos:</h2>
+  <h2>Photos:</h2>
+  <img ng-src="{{spot.spot.url}}">
 </div>
 
-<h2>Description: {{ test.description }}</h2>
-<h2>Distance/Time: {{ test.distance }}</h2>
+<h2>Description: </h2>
+<p>{{ spot.spot.description }}</p>
+<h2>Distance/Time: </h2>
+<p>{{ spot.spot.distance }}</p>
+<button ng-click="makeReservation()">Reserve</button>
+<hr>
+<a href="#/maps">Home</a>

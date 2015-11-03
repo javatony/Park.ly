@@ -1,5 +1,5 @@
 
-function renderMap(responseCoords){
+function renderMap(responseCoords, test){
   L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueXRhbmciLCJhIjoiY2lnY29vYzAwNDV6bnV4a212dmJvaXB2biJ9.q3arVXHBYBTZ_R2PH2vMjA';
 
 
@@ -29,10 +29,14 @@ function renderMap(responseCoords){
         feature = marker.feature;
 
     // Create custom popup content. Chande properties.description to add whatever you like
-    var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-                            '<img src="' + feature.properties.image + '" />' +
-                            feature.properties.description +
-                        '</a>';
+    if(test){
+      var popupContent =  '<img src="' + feature.properties.image + '" />' + feature.properties.description;
+    } else {
+      var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
+                              '<img src="' + feature.properties.image + '" />' +
+                              feature.properties.description +
+                          '</a>';
+    }
 
     // http://leafletjs.com/reference.html#popup
     marker.bindPopup(popupContent,{
@@ -105,8 +109,10 @@ function renderMap(responseCoords){
         minWidth: 340
     });
   });
+
   myLayer.setGeoJSON(geojson);
 }
+
     // myLayer.setGeoJSON(geojson);
   // ********************************************
   // Upon ajaxing locations from database, it can be added to the map from success response sending back json.
@@ -172,5 +178,4 @@ function renderMap(responseCoords){
 
   console.log("Rendering Map...");
 }
-
 

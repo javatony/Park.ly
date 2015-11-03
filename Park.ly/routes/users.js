@@ -75,13 +75,7 @@ router.post('/login', function(req, res, next) {
     bcrypt.compare(req.body.password, user.dataValues.password, function(err, results){
       if(results === true){
         console.log('you have logged in successfully')
-        // issue encrypted token upon login
-        bcrypt.genSalt(8, function(err, salt) {
-          var userIdStr = user.dataValues.id.toString()
-          bcrypt.hash(userIdStr, salt, function(err, token) {
-          res.send(token + "id" + userIdStr)
-          });
-        });
+        res.send("id=" + user.dataValues.id.toString())
       } else {
         console.log('log in failed')
       }

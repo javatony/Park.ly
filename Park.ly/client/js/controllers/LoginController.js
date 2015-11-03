@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location){
+app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', '$uibModalInstance', function($scope, $http, $routeParams, $location, $uibModalInstance){
   $scope.formData = {}
 
   $scope.processForm = function(){
@@ -14,9 +14,9 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location
       }
     })
     .success(function(response){
-      document.cookie = 'token=' + response;
-      //logout() //REMOVE THIS? SI CHENG PLEASE?
-      // console.log(checkLogin()) //SI CHENG WHAT IS THIS???
+      console.log("inside success repsonse")
+      document.cookie = response;
+      $uibModalInstance.dismiss('cancel')
       $location.path('#/maps')
     })
     .error(function(response){
@@ -41,4 +41,13 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location
       console.log(err)
     })
   }
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
 }]);

@@ -1,4 +1,4 @@
-var app = angular.module('Parkly', ['ngRoute']);
+var app = angular.module('Parkly', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 
 app.config(function ($routeProvider){ $routeProvider
   .when('/users/login', {
@@ -11,6 +11,10 @@ app.config(function ($routeProvider){ $routeProvider
     templateUrl: 'js/views/register.html',
     // controllerAs: 'vm'
   })
+  .when('/users/:u_id/profile',{
+    controller: 'LoginController',
+    templateUrl: 'js/views/profile.html'
+  })
   .when('/spots/show', {
     controller: 'ShowController',
     templateUrl: 'js/views/show.html'
@@ -18,6 +22,10 @@ app.config(function ($routeProvider){ $routeProvider
   .when('/spots/new',{
     controller: 'SpotsController',
     templateUrl: 'js/views/create_spot.html'
+  })
+  .when('/spots/:s_id/show',{
+    controller: 'SpotsController',
+    templateUrl: 'js/views/show.html'
   })
   .when('/maps', {
     controller: 'MapController',
@@ -34,15 +42,24 @@ app.config(function($httpProvider) {
 });
 
 function checkLogin(){
-  if (document.cookie != "") {
-    if (document.cookie.match(/token/)[0] === "token") {
+  if (get.cookies("id") != "") {
+      console.log("Logged In")
       return true
-    }
   } else {
     return false
   }
 }
 
 function logout(){
-  document.cookie += ";expires=Thu, 01 Jan 1970 00:00:00 GMT"
+  console.log("logout function")
+  $cookies.remove("id")
 }
+
+function checkAuthorization(){
+  if (get.cookies("id") === $routesParams.u_id){
+    return true
+  } else {
+    return false
+  }
+}
+

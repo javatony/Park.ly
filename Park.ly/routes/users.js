@@ -33,13 +33,15 @@ router.put('/:id', function(req, res, next) {
 
 // User profile route
 router.get('/:id', function(req, res, next) {
-  models.Reservation.findAll({where:{UserId: req.params.id}})
+  models.Reservation.findAll({where:{UserId: req.params.id},
+  include: [models.Spot]})
   .then(function(reservations){
-    models.Spot.findAll({where:{UserId: req.params.id}})
+    models.Spot.findAll({where:{UserId: req.params.id},
+    include: [ models.Reservation, models.User ]})
     .then(function(spots){
       res.send({
-        reservations: reservations,
-        spots: spots
+        spots: spots,
+        reservations: reservations
       });
     })
   })
@@ -73,13 +75,7 @@ router.post('/login', function(req, res, next) {
     bcrypt.compare(req.body.password, user.dataValues.password, function(err, results){
       if(results === true){
         console.log('you have logged in successfully')
-        // issue encrypted token upon login
-        bcrypt.genSalt(8, function(err, salt) {
-          var userIdStr = user.dataValues.id.toString()
-          bcrypt.hash(userIdStr, salt, function(err, token) {
-          res.send(token + "id" + userIdStr)
-          });
-        });
+        res.send("id=" + user.dataValues.id.toString())
       } else {
         console.log('log in failed')
       }

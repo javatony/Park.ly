@@ -1,12 +1,12 @@
 
 body, html {
-    color: #555555;
+    color: #565a5c;
     font-family: 'Montserrat', sans-serif;
 }
 
 #map {
   height: 60em;
-  width: 80em;
+  width: 100%;
 }
 
 .top-bar{
@@ -18,7 +18,7 @@ body, html {
 .header {
     background: rgb(255, 205, 46);
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .header img {
@@ -37,7 +37,7 @@ body, html {
 }
 
 .main {
-    margin: 40px 0;
+    /*margin: 40px 0;*/
     max-width: 1000 px;
 }
 

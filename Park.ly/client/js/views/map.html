@@ -1,14 +1,27 @@
 
 <div id="mapStarter"></div>
 <div id="map"></div>
-<button class="btn btn-primary" id="myLocation">Use my location</button>
-<form id="address" ng-submit="processForm()" role="form">
-  <input id="addressField" ng-model="formData.address" type="text" name="search" placeholder="Address">
-  <label>Start Date</label>
-  <input id="startDate" ng-model="formData.start_date_time" type="datetime-local" name="startDate">
-  <label>End Date</label>
-  <input id="endDate" ng-model="formData.end_date_time" type="datetime-local" name="endDate">
-  <input id="lat" ng-model="formData.lat" type="hidden" name="lat" ng-value="lat" />
-  <input id="long" ng-model="formData.long" type="hidden" name="long" ng-value="long" />
-  <input type="submit" value="Search" class="btn btn-primary">
-</form>
+
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <button class="btn btn-primary" id="myLocation">Use my location</button>
+      <br>
+      <br>
+      <form id="address" ng-submit="processForm()" role="form" class="form-group">
+        <input class="form-control input-lg" id="addressField" ng-model="formData.address" type="text" name="search" placeholder="Address">
+        <label>Start Date</label>
+        <input class="form-control input-lg" id="startDate" ng-model="formData.start_date_time" type="datetime-local" name="startDate">
+        <label>End Date</label>
+        <input class="form-control input-lg" id="endDate" ng-model="formData.end_date_time" type="datetime-local" name="endDate">
+        <input class="form-control input-lg" id="lat" ng-model="formData.lat" type="hidden" name="lat" ng-value="lat" />
+        <input class="form-control input-lg" id="long" ng-model="formData.long" type="hidden" name="long" ng-value="long" />
+        <br>
+        <input type="submit" value="Search" class="btn btn-primary btn-lg btn-block btn-success">
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-var app = angular.module('Parkly', ['ngRoute', 'ngCookies']);
+var app = angular.module('Parkly', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 
 app.config(function ($routeProvider){ $routeProvider
   .when('/users/login', {

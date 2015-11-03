@@ -65,6 +65,7 @@ app.controller('MapController', ['$scope', '$http', '$cookies', function($scope,
     $cookies.put("end", data.end_date_time)
 
     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyC7fCLRRT6scDos0V3pHanuNsmvSX_2dtc", function(results){
+
       newLat = results.results[0].geometry.location.lat;
       newLng = results.results[0].geometry.location.lng;
 

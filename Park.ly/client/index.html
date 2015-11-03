@@ -69,7 +69,8 @@
                   <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
               </div>
           </script>
-          <button type="button" class="btn btn-default" ng-click="open()">Login!</button>
+          <button ng-hide="checkLogin()" type="button" class="btn btn-default"ng-click="open()">Login!</button>
+          <button ng-show="checkLogin()" ng-click="logout()">Logout</button>
         </div> <!-- ends modal instance controller -->
 
       </div>

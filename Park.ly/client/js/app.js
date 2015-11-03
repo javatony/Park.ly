@@ -41,3 +41,25 @@ app.config(function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
 });
 
+function checkLogin(){
+  if (get.cookies("id") != "") {
+      console.log("Logged In")
+      return true
+  } else {
+    return false
+  }
+}
+
+function logout(){
+  console.log("logout function")
+  $cookies.remove("id")
+}
+
+function checkAuthorization(){
+  if (get.cookies("id") === $routesParams.u_id){
+    return true
+  } else {
+    return false
+  }
+}
+

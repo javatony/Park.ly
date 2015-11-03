@@ -1,4 +1,4 @@
-app.controller('ModalController', ['$scope', '$uibModal', '$log', function($scope, $uibModal, $log){
+app.controller('ModalController', ['$scope', '$uibModal', '$log', '$cookies', function($scope, $uibModal, $log, $cookies){
  $scope.items = ['item1', 'item2', 'item3'];
 
   $scope.animationsEnabled = true;
@@ -27,5 +27,17 @@ app.controller('ModalController', ['$scope', '$uibModal', '$log', function($scop
   $scope.toggleAnimation = function () {
     $scope.animationsEnabled = !$scope.animationsEnabled;
   };
+
+  $scope.checkLogin = function () {
+    if ($cookies.get("id") != undefined ) {
+        return true
+    } else {
+      return false
+    }
+  }
+
+  $scope.logout = function () {
+    $cookies.remove("id")
+  }
 
 }]);

@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', '$uibModalInstance', function($scope, $http, $routeParams, $location, $uibModalInstance){
+app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', '$uibModalInstance', '$rootScope', function($scope, $http, $routeParams, $location, $uibModalInstance, $rootScope){
   $scope.formData = {}
 
   $scope.processForm = function(){
@@ -49,5 +49,7 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+
+
 
 }]);

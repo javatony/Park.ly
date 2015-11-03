@@ -50,10 +50,28 @@ app.controller('MapController', ['$scope', '$http', '$cookies', function($scope,
     getLocation();
   });
 
+  $scope.checkErr = function(start_date_time,end_date_time) {
+        $scope.errMessage = '';
+        var curDate = new Date();
+
+        if(new Date(start_date_time) > new Date(end_date_time)){
+          $scope.errMessage = 'End Date should be greater than start date';
+          return false;
+        }
+
+        if(new Date(start_date_time) < curDate){
+           $scope.errMessage = 'Start date should not be before today.';
+           return false;
+        }
+        return true;
+    };
   $scope.formData = {}
+
 
   // Get data from query search and post to server to filter
   $scope.processForm = function(){
+
+
 
     var data = angular.copy($scope.formData);
     console.log(data)

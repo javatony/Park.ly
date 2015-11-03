@@ -1,4 +1,4 @@
-app.controller('ModalController', ['$scope', '$uniModal', '$log', function($scope, $uniModal, $log){
+app.controller('ModalController', ['$scope', '$uibModal', '$log', function($scope, $uibModal, $log){
  $scope.items = ['item1', 'item2', 'item3'];
 
   $scope.animationsEnabled = true;
@@ -8,7 +8,7 @@ app.controller('ModalController', ['$scope', '$uniModal', '$log', function($scop
     var modalInstance = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceController',
+      controller: 'LoginController',
       size: size,
       resolve: {
         items: function () {

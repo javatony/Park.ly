@@ -69,8 +69,13 @@
                   <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
               </div>
           </script>
-          <button ng-hide="checkLogin()" type="button" class="btn btn-default"ng-click="open()">Login!</button>
-          <button ng-show="checkLogin()" ng-click="logout()">Logout</button>
+
+
+          <button ng-hide="checkLogin()" type="button" class="btn btn-default" ng-click="open()">Login!</button>
+          <button ng-show="checkLogin()" ng-click="logout()"><a href="#/maps">Logout</a></button>
+          <button ng-show="checkLogin()"><a href="#/spots/new">Create</a></button>
+          <button ng-show="checkLogin()"><a href="#/users/{{userId}}/profile">Profile</a></button>
+
         </div> <!-- ends modal instance controller -->
 
       </div>
@@ -99,6 +104,7 @@
     <script src="js/controllers/SpotsController.js"></script>
     <script src="js/controllers/ModalController.js"></script>
     <script src="js/controllers/ModalInstanceController.js"></script>
+    <script src="js/controllers/UserController.js"></script>
 
     <!-- Services -->
     <script src="js/services/spot.js"></script>

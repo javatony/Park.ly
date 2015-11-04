@@ -1,9 +1,11 @@
 var models = require("../models")
 var faker = require('faker');
 
-var numberOfUsers = 4;
-var lastDay = new Date(2016,4,1,0,0)
-var numberOfSpots = 8
+
+var numberOfUsers = 20;
+var lastDay = new Date(2016,3,1,0,0)
+var numberOfSpots = 18
+
 
 
 

@@ -1,4 +1,12 @@
-app.controller('ShowController', ['$scope', 'spot', function($scope, spot){
-  $scope.test = spot
+app.controller('ShowController', ['$scope', '$cookies', function($scope, $cookies){
+
+  $scope.checkLogin = function () {
+    if ($cookies.get("id") != undefined ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
 }])
 

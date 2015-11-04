@@ -12,7 +12,7 @@ app.config(function ($routeProvider){ $routeProvider
     // controllerAs: 'vm'
   })
   .when('/users/:u_id/profile',{
-    controller: 'LoginController',
+    controller: 'UserController',
     templateUrl: 'js/views/profile.html'
   })
   .when('/spots/show', {
@@ -43,8 +43,8 @@ app.config(function($httpProvider) {
 
 function checkLogin(){
   if (get.cookies("id") != "") {
-      console.log("Logged In")
-      return true
+    console.log("Logged In")
+    return true
   } else {
     return false
   }

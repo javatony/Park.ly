@@ -6,59 +6,32 @@ var async = require('async');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  // var available_spots = []
-  // var input_start = new Date()
-  // var input_end = new Date()
-  // console.log(input_end)
-  // console.log(input_start)
-  // models.Spot.findAll().then(function(spots){
+  // seeding
+  // models.User.create({first_name: "Si Cheng", last_name: "Zhou", email: "2@2.com", password:"12345678"})
+  // models.User.create({first_name: "Daniel", last_name: "Huang", email: "1@1.com", password:"12345678"})
+  // models.Spot.create({address: "123 123rd ave", start_date_time: new Date(1999,12,12), end_date_time: new Date(2007,12,23), price: 20, UserId: 1})
+  // models.Spot.create({address: "123 Test St.", start_date_time: new Date(2015,11,01,09,00), end_date_time: new Date(2015,11,01,10,00), price: 90, UserId: 2})
+  // models.Reservation.create({start_date_time: new Date(2009,06,01,09,00), end_date_time: new Date(2009,11,01,20,00), UserId: 1, SpotId: 2})
+  // models.Reservation.create({start_date_time: new Date(2008,08,04,09,00), end_date_time: new Date(2008,12,20,20,00), UserId: 1, SpotId: 2})
+  // models.Reservation.create({start_date_time: new Date(2000,12,01,09,00), end_date_time: new Date(2005,2,01,20,00), UserId: 1, SpotId: 7})
+  // models.Reservation.create({start_date_time: new Date(2012,10,01,09,00), end_date_time: new Date(2012,10,05,20,00), UserId: 1, SpotId: 3})
 
-  //   include: [ models.Reservation ]
+  // show all available spots
+  // models.Spot.findAll().done(function(data){
+  models.Spot.findAll({where:{end_date_time:{$gte: new Date(Date())}}}).done(function(data){
+    res.send(data)
+  })
+  // show current user's spots & reservations if logged in
 
-  //   for (var i = 0; i < spots.length; i++){
+  // var user_id = 1
+  // models.User.findById(user_id, {
+  //   include: [ models.Spot,models.Reservation ]})
+  //   .then(function(users) {
+  //     res.render('index', {
+  //     users: users
+  //   });
+  // });
 
-  //     //console.log("Spots length is "+ spots.length)
-  //     console.log("I is currently " + i)
-  //     if (input_end > spots[i].end_date_time || input_start < spots[i].start_date_time) {
-  //       if (i === spots.length - 1){
-  //         res.send(available_spots)
-  //       }
-  //       continue;
-  //     } else { //If request is within Spot range
-
-  //         if (spots[i].dataValues.reservations === undefined ){
-  //           console.log("i is...." + i)
-  //           console.log(spots.length)
-  //           available_spots.push(spots[i])
-  //           if (i === spots.length - 1){
-  //             console.log("ii =" + i)
-  //             console.log("aasdvhjavdbjashdjkasjdsakd")
-  //             res.send(available_spots)
-  //           }
-  //         }
-
-  //       models.Reservation.findAll({where:{SpotId: spots[i].id}})
-  //       .then(function(reservations){
-  //         console.log("In model promise")
-  //         for (var j = 0; j < reservations.length; j++){
-  //           if (input_start < reservations[j].end_date_time && reservations[j].start_date_time < input_end){
-  //             // j = reservations.length - 1
-  //             break; //if there is a conflict with reservation, break out of loop
-  //           }
-  //           if (j === (reservations.length - 1)){
-  //             // console.log(reservations[j].SpotId)
-  //             // models.Spot.findById(reservations[j].SpotId).then(function(spot){
-  //               available_spots.push(spots[i - 1])
-  //           }
-  //           if (i === (spots.length-1) && j === (reservations.length -1) ){
-  //             res.send(available_spots)
-  //           }
-  //         }
-  //       })//end inner-then promise
-  //     }//end else statement
-  //   }
-
-  // })
 });
 
 /* Sorting spot algorithim */

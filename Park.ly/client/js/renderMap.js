@@ -6,111 +6,55 @@ function renderMap(responseCoords, test){
   var devLat = 37.784619;
   var devLong = -122.397236;
 
+  var renderMapHelper = function(lat, lng, responseCoords){
+    console.log(lat)
+    console.log(lng)
+    var map = L.mapbox.map('map', 'mapbox.streets').setView([lat, lng], 15);
+    var marker = L.marker(new L.LatLng(lat, lng),{
+      draggable:false
+    });
+
+    marker.bindPopup('Location').openPopup();
+    marker.addTo(map);
+
+    var myLayer = L.mapbox.featureLayer().addTo(map);
+
+    myLayer.on('layeradd', function(e) {
+      var marker = e.layer,
+      feature = marker.feature;
+
+      // Create custom popup content. Chande properties.description to add whatever you like
+      // if(test){
+      //   var popupContent =  '<img src="' + feature.properties.image + '" />' + feature.properties.description;
+      // } else {
+      // console.log(feature)
+      var popupContent =  '<a target="_blank" class="popup" href="' + '#/' + 'spots/' + feature.id + '/show' + '">' +
+                            '<img src="' + feature.properties.image + '" />' + '$' + feature.price + ' ' +
+                            feature.properties.description +
+                          '</a>';
+      // }
+      // http://leafletjs.com/reference.html#popup
+      marker.bindPopup(popupContent,{
+        closeButton: true,
+        minWidth: 340
+      });
+    });
+
+    myLayer.setGeoJSON( responseCoords || geojson );
+  }
+
 
 //THIS NEEDS CHECKING
   if(responseCoords){
     // map.remove();
     // $('#mapStarter').append('<div id="map"></div>');
-    var map = L.mapbox.map('map', 'mapbox.streets')
-        .setView([newLat, newLng], 15);
+    renderMapHelper(newLat, newLng, responseCoords);
 
+  } else if (latitude != 0) {
+    renderMapHelper(latitude, longitude, responseCoords);
 
-      var marker = L.marker(new L.LatLng(newLat, newLng),{
-      draggable:false
-      });
-
-      marker.bindPopup('Location').openPopup();
-      marker.addTo(map);
-
-  var myLayer = L.mapbox.featureLayer().addTo(map);
-
-  myLayer.on('layeradd', function(e) {
-    var marker = e.layer,
-        feature = marker.feature;
-
-    // Create custom popup content. Chande properties.description to add whatever you like
-    if(test){
-      var popupContent =  '<img src="' + feature.properties.image + '" />' + feature.properties.description;
-    } else {
-      var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-                              '<img src="' + feature.properties.image + '" />' +
-                              feature.properties.description +
-                          '</a>';
-    }
-
-    // http://leafletjs.com/reference.html#popup
-    marker.bindPopup(popupContent,{
-        closeButton: true,
-        minWidth: 340
-    });
-  });
-    myLayer.setGeoJSON(responseCoords);
-
-  }else if(latitude != 0){
-      var map = L.mapbox.map('map', 'mapbox.streets')
-        .setView([latitude, longitude], 15);
-        // .featureLayer.setGeoJSON(geojson);
-
-      var marker = L.marker(new L.LatLng(latitude, longitude),{
-      draggable:false
-      });
-
-      marker.bindPopup('Current user').openPopup();
-      marker.addTo(map);
-      var myLayer = L.mapbox.featureLayer().addTo(map);
-
-    myLayer.on('layeradd', function(e) {
-      var marker = e.layer,
-          feature = marker.feature;
-
-      // Create custom popup content. Chande properties.description to add whatever you like
-      var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-                              '<img src="' + feature.properties.image + '" />' +
-                              feature.properties.description + "HELLO"+
-                          '</a>';
-
-      // http://leafletjs.com/reference.html#popup
-      marker.bindPopup(popupContent,{
-          closeButton: true,
-          minWidth: 340
-      });
-    });
-
-      myLayer.setGeoJSON(geojson);
-
-    }else{ //First reach the site
-      var map = L.mapbox.map('map', 'mapbox.streets')
-      .setView([devLat, devLong], 15);
-      // .featureLayer.setGeoJSON(geojson);
-
-      var marker = L.marker(new L.LatLng(devLat, devLong),{
-        draggable:false
-      });
-      marker.bindPopup('Head Quarters').openPopup();
-      marker.addTo(map);
-
-
-
-  var myLayer = L.mapbox.featureLayer().addTo(map);
-
-  myLayer.on('layeradd', function(e) {
-    var marker = e.layer,
-        feature = marker.feature;
-
-    // Create custom popup content. Chande properties.description to add whatever you like
-    var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-                            '<img src="' + feature.properties.image + '" />' +
-                            feature.properties.description + "HELLO"+
-                        '</a>';
-
-    // http://leafletjs.com/reference.html#popup
-    marker.bindPopup(popupContent,{
-        closeButton: true,
-        minWidth: 340
-    });
-  });
-
-  myLayer.setGeoJSON(geojson);
+  } else { //First reach the site
+    renderMapHelper(devLat, devLong, responseCoords);
 }
 
     // myLayer.setGeoJSON(geojson);

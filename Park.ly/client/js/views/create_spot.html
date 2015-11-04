@@ -23,7 +23,5 @@
     <input name="url" type="text" ng-model="formData.url"><br>
 
     <hr>
-
-
-    <input type="submit" value="Submit">
+    <input ng-show="checkLogin()" type="submit" value="Submit">
 </form>

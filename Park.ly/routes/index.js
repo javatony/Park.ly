@@ -15,8 +15,8 @@ router.get('/', function(req, res, next) {
   // models.Reservation.create({start_date_time: new Date(2012,10,01,09,00), end_date_time: new Date(2012,10,05,20,00), UserId: 1, SpotId: 3})
 
   // show all available spots
-  models.Spot.findAll().done(function(data){
-    // console.log("hello")
+  // models.Spot.findAll().done(function(data){
+  models.Spot.findAll({where:{end_date_time:{$gte: new Date(Date())}}}).done(function(data){
     res.send(data)
   })
   // show current user's spots & reservations if logged in

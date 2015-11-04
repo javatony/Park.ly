@@ -43,8 +43,8 @@ app.config(function($httpProvider) {
 
 function checkLogin(){
   if (get.cookies("id") != "") {
-      console.log("Logged In")
-      return true
+    console.log("Logged In")
+    return true
   } else {
     return false
   }

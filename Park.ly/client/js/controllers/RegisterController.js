@@ -14,6 +14,7 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
     })
     .success(function(response){
       console.log(response)
+      document.cookie = response;
     })
     .error(function(response){
       console.log(response)

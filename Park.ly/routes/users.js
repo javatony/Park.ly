@@ -13,7 +13,12 @@ router.post('/', function(req, res) {
   bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       models.User.create({first_name:req.body.first_name, last_name:req.body.last_name, email:req.body.email, password:hash})
-      res.send({ message: 'created!!!!'})
+        .then(function(){
+          models.User.findOne({where:{email: req.body.email}})
+            .then(function(user){
+              res.send("id=" + user.dataValues.id.toString())
+            })
+        });
       });
   });
   // res.redirect('../');

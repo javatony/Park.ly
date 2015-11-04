@@ -1,13 +1,18 @@
-app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies', function($scope, $http, $routeParams, $cookies){
+app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies', '$window', function($scope, $http, $routeParams, $cookies, $window){
   $scope.formData = {}
 
   // Send a post request to server for creation
 
   $scope.processForm = function(){
     // copying form data
+    //get user_id from cookie and add to data
+    console.log(document)
+    console.log(document.cookie)
+    console.log(document.cookie.match(/\d+/).join(''))
+
     var data = angular.copy($scope.formData)
     console.log(data)
-
+    data.UserId = Number(document.cookie.match(/\d+/).join(''))
     var rawAddress = data.address
     var finalAddress = rawAddress.split(' ').join('+')
 
@@ -33,6 +38,7 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
       })
       .success(function(response){
         console.log(response)
+        $window.location.href = '#/maps'
       })
       .error(function(response){
         console.log(response)

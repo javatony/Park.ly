@@ -3,7 +3,7 @@ var faker = require('faker');
 
 var numberOfUsers = 20;
 var lastDay = new Date(2016,3,1,0,0)
-var numberOfSpots = 100
+var numberOfSpots = 18
 
 
 

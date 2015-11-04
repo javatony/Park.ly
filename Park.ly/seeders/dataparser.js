@@ -13,7 +13,7 @@ var timer = function(array, index) {
 
     if (array.length - 1 === index) {
         return
-    }
+ }
 
     var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+finalAddress+"San+Francisco+CA&key=AIzaSyCrHRlutQamoYVdca7RM_zS5HPT0JVutrU"
     request({

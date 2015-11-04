@@ -5,7 +5,7 @@ var faker = require('faker');
 
 
 
-for (var i = 0; i < 20; i++){
+for (var i = 0; i < 5; i++){
   bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash("1234", salt, function(err, hash) {
         models.User.create({

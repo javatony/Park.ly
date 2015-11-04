@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', '$uibModalInstance', '$rootScope', function($scope, $http, $routeParams, $location, $uibModalInstance, $rootScope){
+app.controller('LoginController', ['$scope', '$http', '$routeParams', '$uibModalInstance', '$rootScope', function($scope, $http, $routeParams, $uibModalInstance, $rootScope){
   $scope.formData = {}
 
   $scope.processForm = function(){
@@ -17,7 +17,6 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$location
       console.log("inside success repsonse")
       document.cookie = response;
       $uibModalInstance.dismiss('cancel')
-      $location.path('#/maps')
     })
     .error(function(response){
       console.log("you got an error")

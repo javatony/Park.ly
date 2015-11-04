@@ -100,16 +100,16 @@ app.controller('MapController', ['$scope', '$http', '$cookies', function($scope,
         console.log(response)
         map.remove();
         $('#mapStarter').append('<div id="map"></div>');
-        renderMap(response);
+          renderMap(response);
         })
         .error(function(response){
         console.log(response)
         console.log("you got an error")
 
-       });
+        });
       }).fail(function(){
         console.log("Fail");
-      });
+    });
 
     // var rawAddress =  data.address;
     // var finalAddress = rawAddress.split(' ').join('+');

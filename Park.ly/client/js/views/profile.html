@@ -7,7 +7,7 @@
       <ul>
         <li><b>Start Time:</b> {{reservation.start_date_time | date }} </li>
         <li><b>End Time:</b> {{reservation.start_date_time | date }}</li>
-        <span ng-controller="SpotsController"><button ng-click="deleteRes(reservation, user_id)">Cancel Reservation</button></span>
+        <span ng-controller="SpotsController"><button class="btn btn-danger"ng-click="deleteRes(reservation, user_id)">Cancel Reservation</button></span>
       </ul>
     </li>
   </ul>

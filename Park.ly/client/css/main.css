@@ -180,3 +180,14 @@ a.back:hover {
 .no-decoration:hover{
   text-decoration: none;
 }
+
+textarea {
+  resize: none;
+}
+
+.no-style-button{
+    background:none;
+    border:none;
+    font-size:1em;
+    color: #428bca;
+}

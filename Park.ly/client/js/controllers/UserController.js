@@ -9,6 +9,7 @@ app.controller('UserController', ['$scope', '$cookies', '$http', "$routeParams",
     }
   }
 
+  // console.log($routeParams.u_id)
   if ($routeParams.u_id) {
     $http({
       method: 'GET',
@@ -20,7 +21,7 @@ app.controller('UserController', ['$scope', '$cookies', '$http', "$routeParams",
     .success(function(response){
       console.log(response)
       $scope.reservations = response.reservations
-
+      debugger
       $scope.spots = response.spots
     })
     .error(function(err){

@@ -1,32 +1,31 @@
 <div ng-controller="UserController">
-  <h1>Welcome {{spots[0].User.first_name}} !</h1>
-  <hr>
-  <h3>Your Reservations</h3>
+  <h1 ng-show="(spots).length"> Welcome {{spots[0].User.first_name}} !</h1>
+  <hr ng-show="(spots).length">
+  <h3 ng-show="(reservations).length"> Your Reservations:</h3>
   <ul ng-repeat="reservation in reservations">
     <li><b>Address:</b><a href="#/spots/{{reservation.SpotId}}/show">{{ reservation.Spot.address }}</a></li>
       <ul>
-        <li><b>Start Time:</b> {{reservation.start_date_time | date }} </li>
-        <li><b>End Time:</b> {{reservation.start_date_time | date }}</li>
+        <li><b>Start Time:</b> {{reservation.start_date_time | date:'MM/dd/yyyy @ h:mma'}} </li>
+        <li><b>End Time:</b> {{reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
       </ul>
     </li>
   </ul>
 
-  <h3>Your Spots</h3>
+  <h3 ng-show="(spots).length">Your Spots:</h3>
   <ul ng-repeat="spot in spots">
     <li><b>Address: </b><a href="#/spots/{{ spot.id }}/show">{{ spot.address }}</a></li>
     <li><b>Price: </b>{{ spot.price }}</li>
     <li><b>Description: </b>{{ spot.description }}</li>
-    <li>Available from: {{ spot.start_date_time | date }} to {{ spot.end_date_time | date }}</li>
+    <li>Available from: {{ spot.start_date_time | date   }} to {{ spot.end_date_time | date  }}</li>
     <li><b>Current Reservations:</b>
       <ul ng-repeat="reservation in spots.Reservations">
         <li>Reservation Id: {{ reservation.id }}</li>
-        <li>Reservation Begin Time: {{ reservation.start_date_time }}</li>
-        <li>Reservation End Time: {{ reservation.end_date_time }}</li>
+        <li>Reservation Begin Time: {{ reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
+        <li>Reservation End Time: {{ reservation.end_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
       </ul>
     </li>
   </ul>
 
-  <hr>
+  <hr ng-show="(spots).length">
 
-  <a href="#/maps">Home</a>
 </div>

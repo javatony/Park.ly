@@ -39,12 +39,13 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
 
 
   $scope.processForm = function(){
-    // copying form data
-    //get user_id from cookie and add to data
+
 
     var data = angular.copy($scope.formData)
     console.log(data)
-    data.UserId = Number(document.cookie.match(/\d+/).join(''))
+//    console.log($cookies.get(id))
+    console.log($cookies.get("id"))
+    data.UserId = $cookies.get("id")//Number(document.cookie.match(/\d+/).join(''))
     var rawAddress = data.address
     var finalAddress = rawAddress.split(' ').join('+')
 
@@ -56,7 +57,7 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
     }).done(function(results){
       data.lat = results.results[0].geometry.location.lat
       data.lng = results.results[0].geometry.location.lng
-      // console.log(data)
+      console.log(data)
       $http({
         method: 'POST',
         // withCredentials: true,
@@ -95,28 +96,7 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
   }
 
 
-  $scope.makeReservation = function(){
-    var data = {
-      userId: $cookies.get('id'),
-      start_date_time: $cookies.get('start'),
-      end_date_time: $cookies.get('end')
-    }
-    $http({
-      method: 'POST',
-      url: 'http://localhost:3001/spots/' + $routeParams.s_id + '/reservation',
-      data: data,
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      }
-    })
-    .success(function(response){
-      console.log(response)
-      $scope.changeRoute('#/maps');
-    })
-    .error(function(err){
-      console.log('Reservation failed')
-    })
-  }
+
 
   $scope.deleteRes = function(reservation, id){
     $scope.deleteSuccess = false

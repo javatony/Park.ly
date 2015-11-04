@@ -16,6 +16,8 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.13.0",
     "sequelize-cli": "^2.0.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "faker": "*",
+    "bcrypt": "*"
   }
 }

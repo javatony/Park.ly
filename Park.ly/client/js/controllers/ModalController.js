@@ -1,6 +1,7 @@
 app.controller('ModalController', ['$scope', '$uibModal', '$log', '$cookies', function($scope, $uibModal, $log, $cookies){
  // $scope.items = ['item1', 'item2', 'item3'];
 
+  $scope.userId = $cookies.get("id");
   $scope.animationsEnabled = true;
 // -------------------------------------------------
   $scope.open = function (size) {
@@ -38,5 +39,10 @@ app.controller('ModalController', ['$scope', '$uibModal', '$log', '$cookies', fu
       return false
     }
   };
+
+
+  $scope.logout = function () {
+    $cookies.remove("id")
+  }
 
 }]);

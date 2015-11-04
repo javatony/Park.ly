@@ -9,6 +9,7 @@ app.controller('UserController', ['$scope', '$cookies', '$http', "$routeParams",
     }
   }
 
+  // console.log($routeParams.u_id)
   if ($routeParams.u_id) {
     $http({
       method: 'GET',
@@ -19,7 +20,6 @@ app.controller('UserController', ['$scope', '$cookies', '$http', "$routeParams",
     })
     .success(function(response){
       console.log(response)
-
       $scope.reservations = response.reservations
       $scope.user_id = $routeParams.u_id
       $scope.spots = response.spots

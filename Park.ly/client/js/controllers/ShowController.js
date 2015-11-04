@@ -1,7 +1,5 @@
 app.controller('ShowController', ['$scope', '$cookies', function($scope, $cookies){
 
-  console.log(" inside ShowController")
-
   $scope.checkLogin = function () {
     if ($cookies.get("id") != undefined ) {
       return true
@@ -9,5 +7,6 @@ app.controller('ShowController', ['$scope', '$cookies', function($scope, $cookie
       return false
     }
   }
+
 }])
 

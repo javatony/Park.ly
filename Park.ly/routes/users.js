@@ -37,7 +37,7 @@ router.put('/:id', function(req, res, next) {
 
 
 // User profile route
-router.get('/:id', function(req, res, next) {
+router.get('/:id/profile', function(req, res, next) {
   models.Reservation.findAll({where:{UserId: req.params.id},
   include: [models.Spot]})
   .then(function(reservations){

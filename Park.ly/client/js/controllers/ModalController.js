@@ -40,5 +40,5 @@ app.controller('ModalController', ['$scope', '$uibModal', '$log', '$cookies', fu
   $scope.logout = function () {
     $cookies.remove("id")
   }
-
+  $scope.userId = $cookies.get("id");
 }]);

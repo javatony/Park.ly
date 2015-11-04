@@ -12,7 +12,7 @@ app.config(function ($routeProvider){ $routeProvider
     // controllerAs: 'vm'
   })
   .when('/users/:u_id/profile',{
-    controller: 'LoginController',
+    controller: 'UserController',
     templateUrl: 'js/views/profile.html'
   })
   .when('/spots/show', {

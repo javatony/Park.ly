@@ -2,6 +2,25 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
   $scope.formData = {}
 
   // Send a post request to server for creation
+
+  $scope.changeRoute = function(url, forceReload) {
+    $scope = $scope || angular.element(document).scope();
+    if(forceReload || $scope.$$phase) { // that's right TWO dollar signs: $$phase
+        window.location = url;
+    } else {
+        $location.path(url);
+        $scope.$apply();
+    }
+  };
+
+  $scope.checkLogin = function () {
+    if ($cookies.get("id") != undefined ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
    $scope.checkErr = function(start_date_time,end_date_time) {
         $scope.errMessage = '';
         var curDate = new Date();
@@ -18,12 +37,10 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
         return true;
     };
 
+
   $scope.processForm = function(){
     // copying form data
     //get user_id from cookie and add to data
-    console.log(document)
-    console.log(document.cookie)
-    console.log(document.cookie.match(/\d+/).join(''))
 
     var data = angular.copy($scope.formData)
     console.log(data)
@@ -35,9 +52,7 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyCi72FpZOhti2We62SYVS8NQ9pQPO9Wk1E", function(results){
     var newLat = results.results[0].geometry.location.lat;
     var newLng = results.results[0].geometry.location.lng;
-      console.log(results);
-      console.log("lat " + newLat);
-      console.log("long " + newLng);
+
     }).done(function(results){
       data.lat = results.results[0].geometry.location.lat
       data.lng = results.results[0].geometry.location.lng
@@ -79,9 +94,11 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
       console.log("Your error is response from spot show route " + error)
     })
   }
+
+
   $scope.makeReservation = function(){
     var data = {
-      userId: 1, //NEED TO UPDATE WITH USER ID PULLED FROM COOKIES
+      userId: $cookies.get('id'),
       start_date_time: $cookies.get('start'),
       end_date_time: $cookies.get('end')
     }
@@ -95,6 +112,7 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
     })
     .success(function(response){
       console.log(response)
+      $scope.changeRoute('#/maps');
     })
     .error(function(err){
       console.log('Reservation failed')

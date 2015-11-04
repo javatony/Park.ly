@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var async = require('async');
 var routes = require('./routes/index');
 var cheese = require('./routes/cheese');
 var reservations = require('./routes/reservations');
@@ -12,6 +12,7 @@ var spots = require('./routes/spots');
 var users = require('./routes/users');
 var cors = require('cors');
 var jquery = require('jquery');
+var client = require('twilio');
 var app = express();
 
 

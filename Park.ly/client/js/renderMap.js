@@ -7,16 +7,15 @@ function renderMap(responseCoords, test){
   var devLat = 37.784619;
   var devLong = -122.397236;
 
-  var renderMapHelper = function(lat, lng, responseCoords){
-    console.log(lat)
-    console.log(lng)
+  var renderMapHelper = function(lat, lng, responseCoords, locationTag){
     var map = L.mapbox.map('map', 'mapbox.streets').setView([lat, lng], 15);
     var marker = L.marker(new L.LatLng(lat, lng),{
       draggable:false
     });
 
 
-    marker.bindPopup('Location').openPopup();
+    marker.bindPopup( locationTag || 'Location' ).openPopup();
+
     marker.addTo(map);
 
 
@@ -48,16 +47,16 @@ function renderMap(responseCoords, test){
 
 
 //THIS NEEDS CHECKING
-  if(responseCoords){
+
+  if(latitude != 0){
     // map.remove();
     // $('#mapStarter').append('<div id="map"></div>');
+    renderMapHelper(latitude, longitude, responseCoords, "Your Current Location");
+    latitude = 0;
+  } else if(responseCoords)  {
     renderMapHelper(newLat, newLng, responseCoords);
-
-  } else if (latitude != 0) {
-    renderMapHelper(latitude, longitude, responseCoords);
-
   } else { //First reach the site
-    renderMapHelper(devLat, devLong, responseCoords);
+    renderMapHelper(devLat, devLong, responseCoords, "Headquarter SF");
 }
 
     // myLayer.setGeoJSON(geojson);

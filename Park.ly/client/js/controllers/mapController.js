@@ -1,5 +1,5 @@
 app.controller('MapController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies) {
-
+  var currentLocations ;
   // define initialize function for page load
   var initi = function(){
     $http({
@@ -32,7 +32,9 @@ app.controller('MapController', ['$scope', '$http', '$cookies', function($scope,
       })
       map.remove();
       $('#mapStarter').append('<div id="map"></div>');
-      renderMap(allSpots, "hello")
+      renderMap(allSpots, "hello");
+      currentLocations = allSpots;
+      console.log(allSpots);
     })
     .error(function(error){
       console.log(error);
@@ -41,13 +43,16 @@ app.controller('MapController', ['$scope', '$http', '$cookies', function($scope,
 
   // run initialize function on page load
   initi();
-  // console.log(geojson)
-  renderMap();
+  console.log("*********************");
+  // renderMap();
+  console.log("*********************");
+
   //Use my location
   $("#myLocation").on('click', function(){
     map.remove();
     $('#mapStarter').append('<div id="map"></div>');
-    getLocation();
+
+    getLocation(currentLocations);
   });
 
   $scope.checkErr = function(start_date_time,end_date_time) {

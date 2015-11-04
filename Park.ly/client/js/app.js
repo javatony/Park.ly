@@ -3,12 +3,12 @@ var app = angular.module('Parkly', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 app.config(function ($routeProvider){ $routeProvider
   .when('/users/login', {
     controller: 'LoginController',
-    templateUrl: 'js/views/login.html',
+    templateUrl: 'js/views/login.html'
     // controllerAs: 'vm'
   })
   .when('/users/register', {
     controller: 'RegisterController',
-    templateUrl: 'js/views/register.html',
+    templateUrl: 'js/views/register.html'
     // controllerAs: 'vm'
   })
   .when('/users/:u_id/profile',{

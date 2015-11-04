@@ -1,14 +1,13 @@
-app.controller('ModalController', ['$scope', '$uibModal', '$log', '$cookies', function($scope, $uibModal, $log, $cookies){
- // $scope.items = ['item1', 'item2', 'item3'];
+app.controller('ModalRegisterController', ['$scope', '$uibModal', '$log', '$cookies', function($scope, $uibModal, $log, $cookies){
 
   $scope.animationsEnabled = true;
 // -------------------------------------------------
-  $scope.open = function (size) {
+  $scope.openReg = function (size) {
 
-    var modalInstance = $uibModal.open({
+    var modalInstance2 = $uibModal.open({
       animation: $scope.animationsEnabled,
-      templateUrl: 'myModalContent.html',
-      controller: 'LoginController',
+      templateUrl: 'myModalContent2.html',
+      controller: 'RegisterController',
       size: size,
       resolve: {
         items: function () {
@@ -17,14 +16,12 @@ app.controller('ModalController', ['$scope', '$uibModal', '$log', '$cookies', fu
       }
     });
 
-    modalInstance.result.then(function (selectedItem) {
+    modalInstance2.result.then(function (selectedItem) {
       $scope.selected = selectedItem;
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-//-----------------------------------------------------
-
 // -------------------------------------------------
 
   $scope.toggleAnimation = function () {

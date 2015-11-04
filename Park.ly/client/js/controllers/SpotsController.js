@@ -2,6 +2,7 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
   $scope.formData = {}
 
   // Send a post request to server for creation
+
   $scope.changeRoute = function(url, forceReload) {
     $scope = $scope || angular.element(document).scope();
     if(forceReload || $scope.$$phase) { // that's right TWO dollar signs: $$phase
@@ -19,6 +20,23 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
       return false
     }
   }
+
+   $scope.checkErr = function(start_date_time,end_date_time) {
+        $scope.errMessage = '';
+        var curDate = new Date();
+
+        if(new Date(start_date_time) > new Date(end_date_time)){
+          $scope.errMessage = 'End Date should be greater than start date';
+          return false;
+        }
+
+        if(new Date(start_date_time) < curDate){
+           $scope.errMessage = 'Start date should not be before today.';
+           return false;
+        }
+        return true;
+    };
+
 
   $scope.processForm = function(){
     // copying form data

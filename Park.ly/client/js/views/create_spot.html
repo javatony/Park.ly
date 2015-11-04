@@ -1,27 +1,36 @@
-<h1>Post Your Spot Here</h1>
-
-<hr>
-<!-- Spot for submitting a post request to create a Spot -->
-<form ng-submit="processForm()">
-
-    <label for="address">Address</label><br>
-    <input name="addresss" type="text" ng-model="formData.address"><br>
-
-    <label for="price">Price</label><br>
-    <input name="price" type="number" ng-model="formData.price"><br>
-
-    <label for="description">Description</label><br>
-    <textarea name="description" type="text" ng-model="formData.description"></textarea><br>
-
-    <label for="start_date_time">Start Date</label><br>
-    <input name="start_date_time" type="datetime-local" ng-model="formData.start_date_time"><br>
-
-    <label for="end_date_time">End Date</label><br>
-    <input name="end_date_time" type="datetime-local" ng-model="formData.end_date_time"><br>
-
-    <label for="url">Image Url:</label><br>
-    <input name="url" type="text" ng-model="formData.url"><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    <h1>Post Your Spot Here</h1>
 
     <hr>
-    <input ng-show="checkLogin()" type="submit" value="Submit">
-</form>
+    <!-- Spot for submitting a post request to create a Spot -->
+      <form name="form" ng-submit="processForm()"role="form">
+
+          <label for="address">Address</label><br>
+          <input class="input-lg form-control" name="addresss" type="text" ng-model="formData.address" placeholder="Address" required><br>
+
+          <label for="price">Price</label><br>
+          <input class="input-lg form-control" name="price" type="number" ng-model="formData.price" placeholder="Price" required><br>
+
+          <label for="description">Description</label><br>
+          <textarea class="input-lg form-control" name="description" type="text" ng-model="formData.description" placeholder="Decription" required></textarea><br>
+
+          <label for="start_date_time">Start Date</label><br>
+          <input class="input-lg form-control" name="start_date_time" type="datetime-local" ng-model="formData.start_date_time" required><br>
+
+          <label for="end_date_time">End Date</label><br>
+          <input class="input-lg form-control" name="end_date_time" type="datetime-local" ng-model="formData.end_date_time" ng-change='checkErr(formData.start_date_time,formData.end_date_time)' required><br>
+          <span class="alert-danger">{{errMessage}}</span><br>
+
+          <label for="url">Image Url:</label><br>
+          <input class="input-lg form-control" name="url" type="text" ng-model="formData.url" placeholder="http://example.com"><br>
+
+          <hr>
+
+          <input ng-show="checkLogin()" class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" ng-disabled="!checkErr(formData.start_date_time,formData.end_date_time)">
+
+      </form>
+    </div>
+  </div>
+</div>

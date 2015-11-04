@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <ul>
+      hi
+
+
+      {{! user name }}
+      {{#users}}
+        <li> Name: {{first_name}}
+          {{! spots }}
+          <ol> Available Spots
+            {{#Spots}}
+              <li>{{address}}</li>
+            {{/Spots}}
+          </ol>
+          {{! revervations }}
+          <ol> Upcoming Reservations
+            {{#Reservations}}
+              <li>{{start_date_time}}</li>
+            {{/Reservations}}
+          </ol>
+        </li>
+      {{/users}}
+    </ul>
+
+    <form action="/users" method="post">
+      <input type="text" name="first_name">
+      <input type="text" name="last_name">
+      <input type="text" name="email">
+      <input type="text" name="password">
+      <input type="submit" value="Submit">
+    </form>
+
+    <form action="/" method="post">
+      Address: <input type="text" name="address"> <br>
+      Start Date/Time: <input type="datetime-local" name="start_date_time"> <br>
+      End Date/Time: <input type="datetime-local" name="end_date_time"> <br>
+      <input type="submit" value="Submit">
+    </form>
+
+    <form action="/spots/2/reservation" method="post">
+      <input type="text" name="userId"><br>
+      <input type="datetime-local" name="start_date_time"><br>
+      <input type="datetime-local" name="end_date_time"><br>
+      <input type="submit" value="Submit">
+    </form>
+
+
+  </body>
+</html>
+

@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+
+    <!-- Monsterrat font -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- Mapbox script -->
+
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Bootstrap cdns -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link href="css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+     <link href="//cdn.rawgit.com/cornflourblue/angular-registration-login-example/master/app-content/app.css" rel="stylesheet" />
+
+    <!-- Angular script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-cookies.js"></script>
+    <link rel="stylesheet" href="vendor/uiBootstrap.css"/>
+    <script src="vendor/uiBootstrap.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+
+    <!-- Leaflet script -->
+
+
+  </head>
+  <div class="container">
+  <body ng-app="Parkly">
+
+
+    <div class="header">
+      <div class="container">
+        <h1 class="top-bar"><a href="#/" class="pink-font no-decoration">Park.ly</a></h1>
+          <div ng-controller="ModalController">
+            <script type="text/ng-template" id="myModalContent.html">
+              <div class="modal-header">
+                  <h3 class="modal-title">Park.ly!</h3>
+              </div>
+              <div class="modal-body">
+                <h2>Login</h2>
+                  <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+                  <form name="form" ng-submit="processForm()" role="form">
+                    <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" ng-model="formData.username" required />
+                        <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required />
+                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+                        <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <a href="#/users/register" class="btn btn-link" ng-click="cancel()">Register</a>
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+              </div>
+          </script>
+
+
+          <button ng-hide="checkLogin()" type="button" class="btn btn-default" ng-click="open()">Login!</button>
+          <button ng-show="checkLogin()" ng-click="logout()"><a href="#/maps">Logout</a></button>
+          <button ng-show="checkLogin()"><a href="#/spots/new">Create</a></button>
+          <button ng-show="checkLogin()"><a href="#/users/{{userId}}/profile">Profile</a></button>
+
+        </div> <!-- ends modal instance controller -->
+
+      </div>
+
+    </div>
+
+    <div class="main">
+        <div ng-view> </div>
+    </div>
+
+
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+
+    <!-- JS files for Mapbox -->
+    <script src="js/dummyJson.js"></script>
+    <script src="js/getLocation.js"></script>
+    <script src="js/renderMap.js"></script>
+    <script src="js/onReady.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/MapController.js"></script>
+    <script src="js/controllers/LoginController.js"></script>
+    <script src="js/controllers/RegisterController.js"></script>
+    <script src="js/controllers/ShowController.js"></script>
+    <script src="js/controllers/SpotsController.js"></script>
+    <script src="js/controllers/ModalController.js"></script>
+    <script src="js/controllers/ModalInstanceController.js"></script>
+    <script src="js/controllers/UserController.js"></script>
+
+    <!-- Services -->
+    <script src="js/services/spot.js"></script>
+
+
+  </body>
+</div>
+</html>

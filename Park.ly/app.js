@@ -12,6 +12,7 @@ var spots = require('./routes/spots');
 var users = require('./routes/users');
 var cors = require('cors');
 var jquery = require('jquery');
+var client = require('twilio');
 var app = express();
 
 

@@ -2,7 +2,7 @@
   <h2>Address: </h2>
   <p>{{ spot.spot.address }}</p>
     <h2>Price: </h2>
-  <p>{{ spot.spot.price }}</p>
+  <p>{{ spot.spot.price | currency }}</p>
   <div class="photo-container">
     <h2>Photos:</h2>
     <img ng-src="{{spot.spot.url}}">
@@ -11,10 +11,16 @@
   <h2>Description: </h2>
   <p>{{ spot.spot.description }}</p>
 
-  <h2>Distance/Time: </h2>
-  <p>{{ spot.spot.distance }}</p>
+  <h2>Available between: </h2>
+  <p>{{ spot.spot.start_date_time | date : "medium" }} - {{ spot.spot.end_date_time | date : "medium" }}</p>
+
+  <h2>Upcoming Reservations: </h2>
+  <div ng-repeat="reservation in spot.reservations">
+    {{reservation.start_date_time | date : "medium" }} - {{reservation.end_date_time | date : "medium" }}
+  </div>
+
+
   <button ng-show="checkLogin()" ng-click="makeReservation()">Reserve</button>
   <hr>
-
-  <a href="#/maps">Home</a>
 </div>
+

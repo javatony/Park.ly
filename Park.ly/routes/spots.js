@@ -5,8 +5,9 @@ var jquery = require('jquery');
 var client = require('twilio')('AC7286cd2e5a5ca119759bb77f63a4e85e', '3697b44b02f9be75b993003f8ddca389');
 // Get all spots route
 router.get('/', function(req, res) {
+
   models.Spot.findAll().then(function(spots){
-    res.send(spots)
+      res.send(spots)
   })
   // res.send({ message: 'created!!!!'})
   // res.redirect('../');
@@ -27,7 +28,10 @@ router.post('/', function(req, res) {
 router.get('/:id', function(req, res, next) {
   models.Spot.findById(req.params.id)
   .then(function(spot){
-    res.send({spot: spot})
+    models.Reservation.findAll({where:{SpotId: spot.id}})
+    .then(function(reservations){
+      res.send({spot: spot, reservations: reservations})
+    })
   })
 });
 

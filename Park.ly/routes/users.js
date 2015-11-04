@@ -82,7 +82,7 @@ router.post('/login', function(req, res, next) {
         console.log('you have logged in successfully')
         res.send("id=" + user.dataValues.id.toString())
       } else {
-        console.log('log in failed')
+        res.status(401).send('Invalid Username or Password')
       }
     })
   })

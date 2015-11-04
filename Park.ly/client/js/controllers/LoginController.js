@@ -19,7 +19,7 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$uibModal
       $uibModalInstance.dismiss('cancel')
     })
     .error(function(response){
-      console.log("you got an error")
+      $scope.loginError = response
     })
   }
 
@@ -37,7 +37,7 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$uibModal
       $scope.spots = response.spots
     })
     .error(function(err){
-      console.log(err)
+      console.log(err.error)
     })
   }
 

@@ -28,8 +28,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
 
-    <!-- Leaflet script -->
+    <!-- uiRouter -->
+    <script src="js/services/angular-ui-router.min.js"></script>
 
+    <!-- Chart -->
+    <link rel="stylesheet" href="css/angular-timeline.css"/>
+    <script src="js/services/angular-timeline.js"></script>
+
+    <!-- Leaflet script -->
 
   </head>
 
@@ -71,10 +77,11 @@
           </script>
 
 
+          <button><a href="#/maps">Home</a></button>
           <button ng-hide="checkLogin()" type="button" class="btn btn-default" ng-click="open()">Login!</button>
-          <button ng-show="checkLogin()" ng-click="logout()"><a href="#/maps">Logout</a></button>
-          <button ng-show="checkLogin()"><a href="#/spots/new">Create</a></button>
           <button ng-show="checkLogin()"><a href="#/users/{{userId}}/profile">Profile</a></button>
+          <button class="pull-right" ng-show="checkLogin()" ng-click="logout()"><a href="#/maps">Logout</a></button>
+          <button ng-show="checkLogin()"><a href="#/spots/new">Share a Spot</a></button>
 
         </div> <!-- ends modal instance controller -->
 
@@ -112,3 +119,5 @@
 
   </body>
 </html>
+
+

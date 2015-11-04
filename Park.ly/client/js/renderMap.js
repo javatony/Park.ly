@@ -1,4 +1,5 @@
-
+// Since featureLayer is an asynchronous method, we use the `.on('ready'`
+// call to only use its marker data once we know it is actually loaded.
 function renderMap(responseCoords, test){
   L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueXRhbmciLCJhIjoiY2lnY29vYzAwNDV6bnV4a212dmJvaXB2biJ9.q3arVXHBYBTZ_R2PH2vMjA';
 
@@ -14,8 +15,10 @@ function renderMap(responseCoords, test){
       draggable:false
     });
 
+
     marker.bindPopup('Location').openPopup();
     marker.addTo(map);
+
 
     var myLayer = L.mapbox.featureLayer().addTo(map);
 

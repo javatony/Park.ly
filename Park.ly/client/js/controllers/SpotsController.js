@@ -1,4 +1,4 @@
-app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies', '$window', function($scope, $http, $routeParams, $cookies, $window){
+app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies', '$window', '$location', function($scope, $http, $routeParams, $cookies, $window, $location){
   $scope.formData = {}
 
   // Send a post request to server for creation
@@ -89,7 +89,6 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
     })
     .success(function(response){
       console.log(response)
-      $scope.spot = response
     })
     .error(function(error){
       console.log("Your error is response from spot show route " + error)
@@ -98,6 +97,27 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
 
 
 
+
+  $scope.deleteRes = function(reservation, id){
+    $scope.deleteSuccess = false
+
+    var address = reservation.Spot.address
+
+    $http({
+      method: 'DELETE',
+      url: 'http://localhost:3001/reservations/' + reservation.id,
+      headers:{
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+    .success(function(response){
+      console.log(response)
+      var url = "#/users/"+id+"/profile"
+
+      window.location = url;
+      window.location.reload();
+    })
+  }
 
 }]);
 

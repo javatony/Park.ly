@@ -1,4 +1,4 @@
-app.controller('RegisterController', ['$scope', '$http', '$window', function($scope, $http, $window){
+app.controller('RegisterController', ['$scope', '$http', '$window', '$uibModalInstance', function($scope, $http, $window, $uibModalInstance){
   $scope.formData = {}
   $scope.changeRoute = function(url, forceReload) {
     $scope = $scope || angular.element(document).scope();
@@ -36,4 +36,13 @@ app.controller('RegisterController', ['$scope', '$http', '$window', function($sc
     //     console.log(response)
     //   })
   }
+
+   $scope.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
 }]);

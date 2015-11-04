@@ -21,7 +21,7 @@ app.controller('UserController', ['$scope', '$cookies', '$http', "$routeParams",
     .success(function(response){
       console.log(response)
       $scope.reservations = response.reservations
-      debugger
+      $scope.user_id = $routeParams.u_id
       $scope.spots = response.spots
     })
     .error(function(err){

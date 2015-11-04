@@ -21,6 +21,10 @@ body, html {
     /*text-align: center;*/
 }
 
+.header button {
+    margin: 0.6em;
+}
+
 .header img {
     margin: 20px auto;
     padding: 20px 0;
@@ -179,4 +183,15 @@ a.back:hover {
 
 .no-decoration:hover{
   text-decoration: none;
+}
+
+textarea {
+  resize: none;
+}
+
+.no-style-button{
+    background:none;
+    border:none;
+    font-size:1em;
+    color: #428bca;
 }

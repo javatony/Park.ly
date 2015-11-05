@@ -8,6 +8,24 @@ app.controller('ShowController', ['$scope', '$cookies', '$http', '$routeParams',
     }
   }
 
+// FIND reservation to pass to show view
+  if($routeParams.s_id){
+    console.log($routeParams.s_id)
+    $http({
+      method: 'GET',
+      url: ('http://localhost:3001/spots/' + $routeParams.s_id),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    })
+    .success(function(response){
+      $scope.spot = response
+    })
+    .error(function(error){
+      console.log("Your error is response from spot show route " + error)
+    })
+  }
+
   $scope.makeReservation = function(){
 
     var data = {

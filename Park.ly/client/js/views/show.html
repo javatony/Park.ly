@@ -1,26 +1,33 @@
-<div ng-controller="SpotsController">
-  <h2>Address: </h2>
-  <p>{{ spot.spot.address }}</p>
-    <h2>Price: </h2>
-  <p>{{ spot.spot.price | currency }}</p>
-  <div class="photo-container">
-    <h2>Photos:</h2>
-    <img ng-src="{{spot.spot.url}}">
-  </div>
+<div ng-controller="ShowController">
+  <!-- <div class="container"> -->
+    <div class="row">
+      <h1>{{ spot.spot.address }}</h1>
+    </div>
+    <div class="row">
+        <hr>
+      <div class="col-md-6">
+        <h2>Price: </h2>
+        <p>{{ spot.spot.price | currency }}/hr</p>
+        <div class="photo-container">
+          <h2>Photos:</h2>
+          <img ng-src="{{spot.spot.url}}">
+        </div>
 
-  <h2>Description: </h2>
-  <p>{{ spot.spot.description }}</p>
+        <h2>Description: </h2>
+        <p>{{ spot.spot.description }}</p>
 
-  <h2>Available between: </h2>
-  <p>{{ spot.spot.start_date_time | date : "medium" }} - {{ spot.spot.end_date_time | date : "medium" }}</p>
-
-  <h2>Upcoming Reservations: </h2>
-  <div ng-repeat="reservation in spot.reservations">
-    {{reservation.start_date_time | date : "medium" }} - {{reservation.end_date_time | date : "medium" }}
-  </div>
-
-
-  <button ng-show="checkLogin()" ng-click="makeReservation()">Reserve</button>
-  <hr>
+        <h2>Available between: </h2>
+        <p>{{ spot.spot.start_date_time | date : "medium" }} - {{ spot.spot.end_date_time | date : "medium" }}</p>
+        <hr>
+        <button class="reserve center-content" ng-show="checkLogin()" ng-click="makeReservation()">Reserve</button>
+      </div>
+      <div class="col-md-6">
+        <h2>Upcoming Reservations: </h2>
+        <div ng-repeat="reservation in spot.reservations">
+          {{reservation.start_date_time | date : "medium" }} - {{reservation.end_date_time | date : "medium" }}
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
 </div>
 

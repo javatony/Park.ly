@@ -1,26 +1,26 @@
 <div class="container">
   <div class="row">
     <div ng-show="checkLogin()" class="col-md-6 col-md-offset-3">
-    <h1>Post Your Spot Here</h1>
+    <h2 class="center-content light-font">Post Your Spot Here</h2>
 
     <hr>
     <!-- Spot for submitting a post request to create a Spot -->
       <form name="form" ng-submit="processForm()"role="form">
 
-          <label for="address">Address</label><br>
+          <label for="address">Address:</label><br>
 
           <input class="input-lg form-control" name="addresss" type="text" ng-model="formData.address" placeholder="Street Address and City" required><br>
 
-          <label for="price">Price</label><br>
+          <label for="price">Price:</label><br>
           <input class="input-lg form-control" name="price" type="number" ng-model="formData.price" placeholder="Price" required><br>
 
-          <label for="description">Description</label><br>
+          <label for="description">Description:</label><br>
           <textarea class="input-lg form-control" name="description" type="text" ng-model="formData.description" placeholder="Description" required></textarea><br>
 
-          <label for="start_date_time">Start of Spot Availability</label><br>
+          <label for="start_date_time">Start of Spot Availability:</label><br>
           <input class="input-lg form-control" name="start_date_time" type="datetime-local" ng-model="formData.start_date_time" required><br>
 
-          <label for="end_date_time">End of Spot Availability</label><br>
+          <label for="end_date_time">End of Spot Availability:</label><br>
           <input class="input-lg form-control" name="end_date_time" type="datetime-local" ng-model="formData.end_date_time" ng-change='checkErr(formData.start_date_time,formData.end_date_time)' required><br>
           <span class="alert-danger">{{errMessage}}</span><br>
 
@@ -29,7 +29,7 @@
 
           <hr>
 
-          <input ng-show="checkLogin()" class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" ng-disabled="!checkErr(formData.start_date_time,formData.end_date_time)">
+          <input ng-show="checkLogin()" class="button-submit" type="submit" value="Submit" ng-disabled="!checkErr(formData.start_date_time,formData.end_date_time)">
 
       </form>
     </div>
@@ -40,7 +40,7 @@
 
       <br>
       <div class="col-md-8 col-md-offset-2"><h1>OOPS!</h1>
-      <h3>Looks like you aren't logged in. To create a spot, please login <a ng-click="open()">here</a> or sign up for a <a href="#/users/register">new account.</a>
+      <h3>Looks like you aren't logged in. To create a spot, please login <a ng-click="open()">here</a> or sign up for a <span ng-controller="ModalRegisterController"> <a ng-click="openReg()">new account.</a></span>
       </div>
 
     <!-- SCRIPT FOR MODAL -->
@@ -74,7 +74,54 @@
               <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
           </div>
       </script>
+  <!-- REGISTER MODAL -->
 
+   <div ng-controller="ModalRegisterController">
+      <script type="text/ng-template" id="myModalContent2.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Park.ly!</h3>
+        </div>
+        <div class="modal-body">
+          <h2>Register</h2>
+          <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+          <form name="form" ng-submit="processForm()" role="form">
+              <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+                  <label for="username">First name</label>
+                  <input type="text" name="firstName" id="firstName" class="form-control" ng-model="formData.first_name" required />
+                  <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+                  <label for="username">Last name</label>
+                  <input type="text" name="lastName" id="Text1" class="form-control" ng-model="formData.last_name" required />
+                  <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                  <label for="username">Email</label>
+                  <input type="text" name="email" id="email" class="form-control" ng-model="formData.email" required />
+                  <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required />
+                  <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+              </div>
+              <div class="form-actions">
+                  <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
+                  <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  <span ng-controller="ModalController">
+                  <a  class="btn btn-link" ng-click="cancel();open()">Login</a></span>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+
+    <button ng-hide="checkLogin()" type="button" class="btn btn-default" ng-click="openReg()">Register</button>
+
+  </div>
 
   </div>
 </div>

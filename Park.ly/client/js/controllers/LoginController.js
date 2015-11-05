@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$http', '$routeParams', '$uibModalInstance', '$rootScope', function($scope, $http, $routeParams, $uibModalInstance, $rootScope){
+app.controller('LoginController', ['$scope', '$http', '$routeParams', '$uibModalInstance', '$rootScope', '$window', function($scope, $http, $routeParams, $uibModalInstance, $rootScope, $window){
   $scope.formData = {}
 
   $scope.processForm = function(){
@@ -17,6 +17,7 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$uibModal
       console.log("inside success repsonse")
       document.cookie = response;
       $uibModalInstance.dismiss('cancel')
+      $window.location.reload()
     })
     .error(function(response){
       $scope.loginError = response

@@ -1,6 +1,8 @@
 * {
   font-family: 'Open Sans', sans-serif;
+  box-sizing: border box;
 }
+
 
 body, html {
     color: #565a5c;
@@ -64,7 +66,7 @@ textarea {
     top: 25%;
     background:  #fff;
     padding: 3em;
-    width: 24%;
+    width: 300px;
     margin-left: .5em;
     border: 1px solid #CED0D2;
     max-width: 300px;

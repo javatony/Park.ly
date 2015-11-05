@@ -16,6 +16,7 @@
     <!-- Bootstrap cdns -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet" />
+    <link href="css/hover.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
      <link href="//cdn.rawgit.com/cornflourblue/angular-registration-login-example/master/app-content/app.css" rel="stylesheet" />
@@ -39,7 +40,7 @@
     <div>
       <div class="container">
         <div class="row">
-          <h1 class="center-content header-title"><a href="#/" class="link-color title-link">PARK.LY</a></h1>
+          <h1 class="center-content header-title"><span class="nav-a"><a href="#/" class="link-color title-link">PARK.LY</a></span></h1>
         </div>
 
         <div class="row nav-bar">
@@ -65,19 +66,19 @@
                         <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+                        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="button-modal">Login</button>
                         <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         <span ng-controller="ModalRegisterController">
-                        <a  class="btn btn-link" ng-click="cancel();openReg()">Register</a></span>
+                        <a  class="button-modal" ng-click="cancel();openReg()">Register</a></span>
                     </div>
                   </form>
               </div>
               <div class="modal-footer">
-                  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                  <button class="submit-modal" type="button" ng-click="cancel()">Cancel</button>
               </div>
           </script>
 
-          <a ng-hide="checkLogin()" type="button" class="nav-links link-color" ng-click="open()">Login</a>
+          <span class="nav-a"><a ng-hide="checkLogin()" type="button" class="hvr-float nav-links link-color" ng-click="open()">Login</a></span>
 
           </div> <!-- ends modal instance controller -->
 
@@ -111,20 +112,20 @@
                           <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
                       </div>
                       <div class="form-actions">
-                          <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
+                          <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="button-modal">Register</button>
                           <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                           <span ng-controller="ModalController">
-                          <a  class="btn btn-link" ng-click="cancel();open()">Login</a></span>
+                          <a  class="button-modal" ng-click="cancel();open()">Login</a></span>
                       </div>
                   </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                    <button class="submit-modal" type="button" ng-click="cancel()">Cancel</button>
                 </div>
             </script>
 
 
-            <a ng-hide="checkLogin()" type="button" class="nav-links link-color" ng-click="openReg()">Register</a>
+            <span class="nav-a"><a ng-hide="checkLogin()" type="button" class="hvr-float nav-links link-color" ng-click="openReg()">Register</a></span>
 
           </div> <!-- ends modal instance controller -->
 
@@ -132,10 +133,10 @@
 
 
           <div class="nav-a" ng-controller="IndexController">
-            <a ng-show="checkLogin()" ng-click="logout()" href="#/maps" class="nav-links link-color">Logout</a>
-            <a ng-show="checkLogin()" class="nav-links link-color" href="#/users/{{userId}}/profile">Profile</a>
-            <a ng-show="checkLogin()" class="nav-links link-color" href="#/spots/new">Create</a>
-            <a class="nav-links link-color" href="#/maps">Home</a>
+            <a ng-show="checkLogin()" ng-click="logout()" href="#/maps" class="hvr-float nav-links link-color">Logout</a>
+            <a ng-show="checkLogin()" class="hvr-float nav-links link-color" href="#/users/{{userId}}/profile">Profile</a>
+            <a ng-show="checkLogin()" class="hvr-float nav-links link-color" href="#/spots/new">Create</a>
+            <a class="hvr-float nav-links link-color" href="#/maps">Home</a>
           </div>
         </div>
         <hr>
@@ -144,7 +145,7 @@
 
     <div class="main container">
       <div ng-controller="IndexController">
-        <div class="jumbotron" ng-if="!checkLogin()">
+        <div class="jumbotron swoosh" ng-if="!checkLogin()">
           <div class="col-md-6">
             <div class="jumbo-text">
             <h2 class="heavy-font">Welcome to PARK.LY</h2>
@@ -153,7 +154,7 @@
           </div>
         </div>
       </div>
-        <div ng-view> </div>
+        <div ng-view ng-controller="IndexController"> </div>
     </div>
 
 

@@ -1,14 +1,6 @@
 app.controller('RegisterController', ['$scope', '$http', '$window', '$uibModalInstance', function($scope, $http, $window, $uibModalInstance){
   $scope.formData = {}
-  $scope.changeRoute = function(url, forceReload) {
-    $scope = $scope || angular.element(document).scope();
-    if(forceReload || $scope.$$phase) { // that's right TWO dollar signs: $$phase
-        window.location = url;
-    } else {
-        $location.path(url);
-        $scope.$apply();
-    }
-  };
+
   $scope.processForm = function(){
     var data = angular.copy($scope.formData)
     console.log(data)
@@ -24,8 +16,8 @@ app.controller('RegisterController', ['$scope', '$http', '$window', '$uibModalIn
     .success(function(response){
       console.log(response)
       document.cookie = response;
-      // $window.location.href = '#/maps'
-      $scope.changeRoute('#/maps');
+      $uibModalInstance.dismiss('cancel')
+      $window.location.reload();
     })
     .error(function(response){
       console.log(response)

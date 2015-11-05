@@ -16,10 +16,15 @@ app.controller('LoginController', ['$scope', '$http', '$routeParams', '$uibModal
     .success(function(response){
       console.log("inside success repsonse")
       document.cookie = response;
+
       $uibModalInstance.dismiss('cancel')
     })
     .error(function(response){
-      $scope.loginError = response
+      $scope.loginError = response;
+
+      $scope.error = function(){
+        return true
+      }
     })
   }
 

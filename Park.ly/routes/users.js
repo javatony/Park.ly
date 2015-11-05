@@ -77,6 +77,7 @@ router.post('/login', function(req, res, next) {
   console.log(req.body)
   models.User.findOne({where:{email: req.body.username}})
   .then(function(user){
+    if(user!= null){
     bcrypt.compare(req.body.password, user.dataValues.password, function(err, results){
       if(results === true){
         console.log('you have logged in successfully')
@@ -84,7 +85,11 @@ router.post('/login', function(req, res, next) {
       } else {
         res.status(401).send('Invalid Username or Password')
       }
+
     })
+    }else{
+      res.status(401).send('Invalid Username or Password')
+    } //end of first if
   })
 });
 

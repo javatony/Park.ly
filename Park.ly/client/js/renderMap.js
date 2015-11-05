@@ -43,7 +43,7 @@ function renderMap(responseCoords, test){
     renderMapHelper(latitude, longitude, responseCoords, "Your Current Location");
     latitude = 0;
   }else if(responseCoords)  {
-    renderMapHelper(newLat, newLng, responseCoords, "Search Result or Default");
+    renderMapHelper(newLat, newLng, responseCoords, "Headquarter SF");
   }else { //First reach the site
     renderMapHelper(devLat, devLong, responseCoords, "Headquarter SF");
   }

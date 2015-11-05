@@ -113,7 +113,6 @@ app.controller('SpotsController', ['$scope', '$http', '$routeParams', '$cookies'
     .success(function(response){
       console.log(response)
       var url = "#/users/"+id+"/profile"
-
       window.location = url;
       window.location.reload();
     })

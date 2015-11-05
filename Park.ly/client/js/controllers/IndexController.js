@@ -14,4 +14,6 @@ app.controller('IndexController', ['$scope', '$cookies', '$window', function($sc
   }
   $scope.userId = $cookies.get("id");
 
+
 }]);
+

@@ -57,7 +57,7 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
 
   //Error checking for date inputs
   $scope.checkErr = function(start_date_time,end_date_time) {
-    $scope.processForm.errMessage = '';
+    $scope.errMessage = '';
     var curDate = new Date();
 
     if(new Date(start_date_time) > new Date(end_date_time)){

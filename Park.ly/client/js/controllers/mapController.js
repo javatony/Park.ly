@@ -46,6 +46,7 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
 
   //Use my location
   $("#myLocation").on('click', function(){
+    $cookies.put("visited", true)
     map.remove();
     $('#mapStarter').append('<div id="map"></div>');
     getLocation(currentLocations);
@@ -82,10 +83,11 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
 
     $cookies.put("start", data.start_date_time)
     $cookies.put("end", data.end_date_time)
+    $cookies.put("visited", true)
 
     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyC7fCLRRT6scDos0V3pHanuNsmvSX_2dtc", function(results){
       if (results.status === "ZERO_RESULTS") {
-        alert("Sorry, we can not locate the address specified, please try again")
+        sweetAlert("Oops...", "Sorry, we can not locate the address specified, please try again", "error")
       } else {
         $scope.errMessage = "";
         newLat = results.results[0].geometry.location.lat;

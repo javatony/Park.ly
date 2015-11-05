@@ -3,25 +3,29 @@
 <div id="map"></div>
 
 <hr>
-<div class="container">
-  <div class="row">
-      <div class="col-md-4">
-        <button class="btn btn-primary" id="myLocation">Use my location</button>
-        <br>
-        <br>
-        <form id="address" ng-submit="processForm()" role="form" class="form-group">
-          <input class="form-control input-lg" id="addressField" ng-model="formData.address" type="text" name="search" placeholder="Address" required >
-          <label>Start Date</label>
-          <input class="form-control input-lg" id="startDate" ng-model="formData.start_date_time" type="datetime-local" name="startDate" required>
-          <label>End Date</label>
-          <input class="form-control input-lg" id="endDate" ng-model="formData.end_date_time" type="datetime-local" name="endDate" ng-change='checkErr(formData.start_date_time,formData.end_date_time)' required>
-          <span class="alert-danger">{{errMessage}}</span>
-          <input class="form-control input-lg" id="lat" ng-model="formData.lat" type="hidden" name="lat" ng-value="lat" />
-          <input class="form-control input-lg" id="long" ng-model="formData.long" type="hidden" name="long" ng-value="long" />
-          <br>
-          <input type="submit" value="Search" class="btn btn-primary btn-lg btn-block btn-success" ng-disabled="!checkErr(formData.start_date_time,formData.end_date_time)">
-        </form>
+<!-- <div class="container"> -->
+  <!-- <div class="row"> -->
+      <div id="abs-form" class=" col-md-4">
+        <div class="row">
+          <form id="address" ng-submit="processForm()" role="form" class="form-group">
+            <h2>Input your search below</h2>
+            <hr>
+            <input class="form-control input-md" id="addressField" ng-model="formData.address" type="text" name="search" placeholder="Address" required >
+            <label class="white-text">Start Date</label>
+            <input class="form-control input-md" id="startDate" ng-model="formData.start_date_time" type="datetime-local" name="startDate" required>
+            <label class="white-text">End Date</label>
+            <input class="form-control input-md" id="endDate" ng-model="formData.end_date_time" type="datetime-local" name="endDate" ng-change='checkErr(formData.start_date_time,formData.end_date_time)' required>
+            <span class="alert-danger">{{errMessage}}</span>
+            <input class="form-control input-md" id="lat" ng-model="formData.lat" type="hidden" name="lat" ng-value="lat" />
+            <input class="form-control input-md" id="long" ng-model="formData.long" type="hidden" name="long" ng-value="long" />
+            <br>
+            <span class="full-width"><input type="submit" value="Search" class="button-submit" ng-disabled="!checkErr(formData.start_date_time,formData.end_date_time)"></span>
+          </form>
+        </div>
+        <div class="row center-content">
+          <button class="button-link" id="myLocation">Use my location</button>
+        </div>
       </div>
     <div class="col-md-8"></div>
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->

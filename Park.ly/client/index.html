@@ -2,8 +2,9 @@
 <html>
   <head>
 
-    <!-- Monsterrat font -->
+    <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800' rel='stylesheet' type='text/css'>
     <!-- Mapbox script -->
 
     <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
@@ -31,13 +32,17 @@
     <!-- Leaflet script -->
 
   </head>
-  <div class="container">
+  <!-- <div class="container"> -->
   <body ng-app="Parkly">
 
 
-    <div class="header">
+    <div>
       <div class="container">
-        <h1 class="top-bar"><a href="#/" class="pink-font no-decoration">Park.ly</a></h1>
+        <div class="row">
+          <h1 class="center-content header-title"><a href="#/" class="link-color title-link">PARK.LY</a></h1>
+        </div>
+
+        <div class="row nav-bar">
           <div ng-controller="ModalController">
             <script type="text/ng-template" id="myModalContent.html">
               <div class="modal-header">
@@ -70,72 +75,72 @@
               </div>
           </script>
 
-          <button ng-hide="checkLogin()" type="button" class="btn btn-default" ng-click="open()">Login</button>
+          <a ng-hide="checkLogin()" type="button" class="nav-links link-color" ng-click="open()">Login</a>
 
-        </div> <!-- ends modal instance controller -->
+          </div> <!-- ends modal instance controller -->
 
-         <div ng-controller="ModalRegisterController">
-            <script type="text/ng-template" id="myModalContent2.html">
-              <div class="modal-header">
-                  <h3 class="modal-title">Park.ly!</h3>
-              </div>
-              <div class="modal-body">
-                <h2>Register</h2>
-                <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
-                <form name="form" ng-submit="processForm()" role="form">
-                    <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-                        <label for="username">First name</label>
-                        <input type="text" name="firstName" id="firstName" class="form-control" ng-model="formData.first_name" required />
-                        <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
-                    </div>
-                    <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
-                        <label for="username">Last name</label>
-                        <input type="text" name="lastName" id="Text1" class="form-control" ng-model="formData.last_name" required />
-                        <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
-                    </div>
-                    <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-                        <label for="username">Email</label>
-                        <input type="text" name="email" id="email" class="form-control" ng-model="formData.email" required />
-                        <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
-                    </div>
-                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required />
-                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
-                        <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        <span ng-controller="ModalController">
-                        <a  class="btn btn-link" ng-click="cancel();open()">Login</a></span>
-                    </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-              </div>
-          </script>
-
-
-          <button ng-hide="checkLogin()" type="button" class="btn btn-default" ng-click="openReg()">Register</button>
-
-        </div> <!-- ends modal instance controller -->
+           <div ng-controller="ModalRegisterController">
+              <script type="text/ng-template" id="myModalContent2.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Park.ly!</h3>
+                </div>
+                <div class="modal-body">
+                  <h2>Register</h2>
+                  <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+                  <form name="form" ng-submit="processForm()" role="form">
+                      <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+                          <label for="username">First name</label>
+                          <input type="text" name="firstName" id="firstName" class="form-control" ng-model="formData.first_name" required />
+                          <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
+                      </div>
+                      <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+                          <label for="username">Last name</label>
+                          <input type="text" name="lastName" id="Text1" class="form-control" ng-model="formData.last_name" required />
+                          <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>
+                      </div>
+                      <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                          <label for="username">Email</label>
+                          <input type="text" name="email" id="email" class="form-control" ng-model="formData.email" required />
+                          <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+                      </div>
+                      <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                          <label for="password">Password</label>
+                          <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required />
+                          <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                      </div>
+                      <div class="form-actions">
+                          <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
+                          <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                          <span ng-controller="ModalController">
+                          <a  class="btn btn-link" ng-click="cancel();open()">Login</a></span>
+                      </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
 
 
+            <a ng-hide="checkLogin()" type="button" class="nav-links link-color" ng-click="openReg()">Register</a>
+
+          </div> <!-- ends modal instance controller -->
 
 
-        <div ng-controller="IndexController">
-          <button><a href="#/maps">Home</a></button>
-          <button ng-show="checkLogin()" ng-click="logout()"><a href="#/maps">Logout</a></button>
-          <button ng-show="checkLogin()"><a href="#/spots/new">Create</a></button>
-          <button ng-show="checkLogin()"><a href="#/users/{{userId}}/profile">Profile</a></button>
+
+
+          <div class="nav-a" ng-controller="IndexController">
+            <a ng-show="checkLogin()" ng-click="logout()" href="#/maps" class="nav-links link-color">Logout</a>
+            <a ng-show="checkLogin()" class="nav-links link-color" href="#/users/{{userId}}/profile">Profile</a>
+            <a ng-show="checkLogin()" class="nav-links link-color" href="#/spots/new">Create</a>
+            <a class="nav-links link-color" href="#/maps">Home</a>
+          </div>
         </div>
-
+        <hr>
       </div>
-
     </div>
 
-    <div class="main">
+    <div class="main container">
         <div ng-view> </div>
     </div>
 
@@ -166,7 +171,7 @@
 
 
   </body>
-</div>
+<!-- </div> -->
 </html>
 
 

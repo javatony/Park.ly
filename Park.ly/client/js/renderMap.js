@@ -8,7 +8,9 @@ function renderMap(responseCoords, test){
   var devLong = -122.397236;
 
   var renderMapHelper = function(lat, lng, responseCoords, locationTag){
-    var map = L.mapbox.map('map', 'mapbox.streets').setView([lat, lng], 15);
+    var allMaps = ['mapbox.streets', 'mapbox.light', 'mapbox.comic', 'mapbox.outdoors', 'mapbox.pencil', 'mapbox.pirates', 'mapbox.emerald', 'mapbox.high-contrast']
+    var randMap = allMaps[Math.floor(Math.random()*allMaps.length)];
+    var map = L.mapbox.map('map', randMap).setView([lat, lng], 15);
     var marker = L.marker(new L.LatLng(lat, lng),{
       draggable:false
     });

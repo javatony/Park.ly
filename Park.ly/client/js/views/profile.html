@@ -1,39 +1,51 @@
 
 <div ng-controller="UserController">
-  <h1 ng-show="(spots).length"> Welcome {{spots[0].User.first_name}} !</h1>
-  <hr ng-show="(spots).length">
-  <h3 ng-show="(reservations).length"> Your Reservations:</h3>
+  <div class="container">
+    <div class="row">
+      <h1 ng-show="(spots).length"> Welcome {{spots[0].User.first_name}} !</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <!-- <hr ng-show="(spots).length"> -->
+        <h3 ng-show="(reservations).length"> Your Reservations:</h3>
+        <ul ng-repeat="reservation in reservations">
+          <div class="row row-bottom-margin">
+            <li><b>Address: </b><a href="#/spots/{{reservation.SpotId}}/show">{{ reservation.Spot.address }}</a></li>
+              <ul>
 
-  <ul ng-repeat="reservation in reservations">
-    <li><b>Address: </b><a href="#/spots/{{reservation.SpotId}}/show">{{ reservation.Spot.address }}</a></li>
-      <ul>
+                <li><b>Start Time:</b> {{reservation.start_date_time | date:'MM/dd/yyyy @ h:mma'}} </li>
+                <li><b>End Time:</b> {{reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
+                <br>
+                <span ng-controller="SpotsController"><a class="cancellation" ng-click="deleteRes(reservation, user_id)">Cancel Reservation</a></span>
 
-        <li><b>Start Time:</b> {{reservation.start_date_time | date:'MM/dd/yyyy @ h:mma'}} </li>
-        <li><b>End Time:</b> {{reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
-        <span ng-controller="SpotsController"><button class="btn btn-danger"ng-click="deleteRes(reservation, user_id)">Cancel Reservation</button></span>
+              </ul>
+            </li>
+          </div>
+          <!-- <hr> -->
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 ng-show="(spots).length">Your Spots:</h3>
+        <ul ng-repeat="spot in spots">
+          <div class="row row-bottom-margin">
+            <li><b>Address: </b><a href="#/spots/{{ spot.id }}/show">{{ spot.address }}</a></li>
+            <li><b>Price: </b>{{ spot.price }}</li>
+            <li><b>Description: </b>{{ spot.description }}</li>
+            <li>Available from: {{ spot.start_date_time | date   }} to {{ spot.end_date_time | date  }}</li>
+            <li><b>Current Reservations:</b>
+              <ul ng-repeat="reservation in spots.Reservations">
+                <li>Reservation Id: {{ reservation.id }}</li>
+                <li>Reservation Begin Time: {{ reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
+                <li>Reservation End Time: {{ reservation.end_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
+              </ul>
+            </li>
+          </div>
+        </ul>
 
-      </ul>
-    </li>
-  </ul>
-
-  <h3 ng-show="(spots).length">Your Spots:</h3>
-  <ul ng-repeat="spot in spots">
-    <li><b>Address: </b><a href="#/spots/{{ spot.id }}/show">{{ spot.address }}</a></li>
-    <li><b>Price: </b>{{ spot.price }}</li>
-    <li><b>Description: </b>{{ spot.description }}</li>
-    <li>Available from: {{ spot.start_date_time | date   }} to {{ spot.end_date_time | date  }}</li>
-    <li><b>Current Reservations:</b>
-      <ul ng-repeat="reservation in spots.Reservations">
-        <li>Reservation Id: {{ reservation.id }}</li>
-        <li>Reservation Begin Time: {{ reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
-        <li>Reservation End Time: {{ reservation.end_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
-      </ul>
-    </li>
-  </ul>
-
-  <hr ng-show="(spots).length">
-
-
+        <hr ng-show="(spots).length">
+      </div>
+    </div>
+  </div> <!-- Closing bootstrap container -->
 </div>
 
 

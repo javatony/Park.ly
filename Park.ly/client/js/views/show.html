@@ -1,8 +1,8 @@
-<div ng-controller="SpotsController">
-  <h2>Address: </h2>
-  <p>{{ spot.spot.address }}</p>
-    <h2>Price: </h2>
-  <p>{{ spot.spot.price | currency }}</p>
+<div ng-controller="ShowController">
+  <H1>{{ spot.spot.address }}</h1>
+  <hr>
+  <h2>Price: </h2>
+  <p>{{ spot.spot.price | currency }}/hr</p>
   <div class="photo-container">
     <h2>Photos:</h2>
     <img ng-src="{{spot.spot.url}}">

@@ -1,4 +1,4 @@
-app.controller('MapController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies) {
+app.controller('MapController', ['$scope', '$http', '$cookies', '$window', function($scope, $http, $cookies, $window) {
   var currentLocations ;
   // define initialize function for page load
   var initi = function(){
@@ -51,25 +51,26 @@ app.controller('MapController', ['$scope', '$http', '$cookies', function($scope,
   $("#myLocation").on('click', function(){
     map.remove();
     $('#mapStarter').append('<div id="map"></div>');
-
     getLocation(currentLocations);
+    $window.location.reload()
   });
 
+  //Error checking for date inputs
   $scope.checkErr = function(start_date_time,end_date_time) {
-        $scope.errMessage = '';
-        var curDate = new Date();
+    $scope.processForm.errMessage = '';
+    var curDate = new Date();
 
-        if(new Date(start_date_time) > new Date(end_date_time)){
-          $scope.errMessage = 'End Date should be greater than start date';
-          return false;
-        }
+    if(new Date(start_date_time) > new Date(end_date_time)){
+      $scope.errMessage = 'End Date should be greater than start date';
+      return false;
+    }
 
-        if(new Date(start_date_time) < curDate){
-           $scope.errMessage = 'Start date should not be before today.';
-           return false;
-        }
-        return true;
-    };
+    if(new Date(start_date_time) < curDate){
+       $scope.errMessage = 'Start date should not be before today.';
+       return false;
+    }
+    return true;
+  };
   $scope.formData = {}
 
 
@@ -88,10 +89,15 @@ app.controller('MapController', ['$scope', '$http', '$cookies', function($scope,
     $cookies.put("end", data.end_date_time)
 
     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyC7fCLRRT6scDos0V3pHanuNsmvSX_2dtc", function(results){
-
-      newLat = results.results[0].geometry.location.lat;
-      newLng = results.results[0].geometry.location.lng;
-
+      if (results.status === "ZERO_RESULTS") {
+        $scope.addressErr = "Sorry, we cannot locate the address you entered.";
+        return false;
+      } else {
+        $scope.addressErr = "";
+        $scope.errMessage = "";
+        newLat = results.results[0].geometry.location.lat;
+        newLng = results.results[0].geometry.location.lng;
+      }
     }).done(function(){
       $http({
         method: 'POST',

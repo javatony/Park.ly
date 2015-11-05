@@ -143,11 +143,13 @@
     </div>
 
     <div class="main container">
-      <div class="jumbotron">
-        <div class="col-md-6">
-          <div class="jumbo-text">
+      <div ng-controller="IndexController">
+        <div class="jumbotron" ng-if="!checkLogin()">
+          <div class="col-md-6">
+            <div class="jumbo-text">
             <h2 class="heavy-font">Welcome to PARK.LY</h2>
 
+            </div>
           </div>
         </div>
       </div>

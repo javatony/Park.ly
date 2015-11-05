@@ -1,5 +1,4 @@
 <div ng-controller="ShowController">
-  <!-- <div class="container"> -->
     <div class="row">
       <h1>{{ spot.spot.address }}</h1>
     </div>
@@ -12,12 +11,11 @@
           <h2>Photos:</h2>
           <img ng-src="{{spot.spot.url}}">
         </div>
-
         <h2>Description: </h2>
         <p>{{ spot.spot.description }}</p>
 
         <h2>Available between: </h2>
-        <p>{{ spot.spot.start_date_time | date : "medium" }} - {{ spot.spot.end_date_time | date : "medium" }}</p>
+        <p>{{ spot.spot.start_date_time | date:'MM/dd/yyyy @ h:mma'}} - {{ spot.spot.end_date_time | date:'MM/dd/yyyy @ h:mma'}}</p>
         <hr>
         <button class="reserve center-content" ng-show="checkLogin()" ng-click="makeReservation()">Reserve</button>
       </div>
@@ -28,6 +26,5 @@
         </div>
       </div>
     </div>
-  <!-- </div> -->
 </div>
 

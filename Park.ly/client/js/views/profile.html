@@ -2,11 +2,10 @@
 <div ng-controller="UserController">
   <div class="container">
     <div class="row">
-      <h1 ng-show="(spots).length"> Welcome {{spots[0].User.first_name}} !</h1>
+      <h1> Welcome {{userFirstName}} !</h1>
     </div>
     <div class="row">
       <div class="col-md-6">
-        <!-- <hr ng-show="(spots).length"> -->
         <h3 ng-show="(reservations).length"> Your Reservations:</h3>
         <ul ng-repeat="reservation in reservations">
           <div class="row row-bottom-margin">
@@ -21,7 +20,6 @@
               </ul>
             </li>
           </div>
-          <!-- <hr> -->
         </ul>
       </div>
       <div class="col-md-6">
@@ -29,22 +27,23 @@
         <ul ng-repeat="spot in spots">
           <div class="row row-bottom-margin">
             <li><b>Address: </b><a href="#/spots/{{ spot.id }}/show">{{ spot.address }}</a></li>
-            <li><b>Price: </b>{{ spot.price }}</li>
+            <li><b>Price: </b>{{ spot.price | currency }}/hr</li>
             <li><b>Description: </b>{{ spot.description }}</li>
-            <li>Available from: {{ spot.start_date_time | date   }} to {{ spot.end_date_time | date  }}</li>
+            <li><b>Available from: </b>{{ spot.start_date_time | date:'MM/dd/yyyy @ h:mma'}} to {{ spot.end_date_time | date:'MM/dd/yyyy @ h:mma'}}</li>
+
             <li><b>Current Reservations:</b>
-              <ul ng-repeat="reservation in spots.Reservations">
-                <li>Reservation Id: {{ reservation.id }}</li>
-                <li>Reservation Begin Time: {{ reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
-                <li>Reservation End Time: {{ reservation.end_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
+              <ul ng-repeat="reservation in reservations">
+                <br>
+                <li><b>Begin Time: </b>{{ reservation.start_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
+                <li><b>End Time: </b>{{ reservation.end_date_time | date:'MM/dd/yyyy @ h:mma' }}</li>
               </ul>
             </li>
           </div>
         </ul>
-
-        <hr ng-show="(spots).length">
       </div>
     </div>
+        <!-- <hr ng-show="(spots).length"> -->
+        <hr>
   </div> <!-- Closing bootstrap container -->
 </div>
 

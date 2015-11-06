@@ -44,10 +44,13 @@ router.get('/:id/profile', function(req, res, next) {
     models.Spot.findAll({where:{UserId: req.params.id},
     include: [ models.Reservation, models.User ]})
     .then(function(spots){
-      res.send({
-        spots: spots,
-        reservations: reservations
-      });
+      models.User.findById(req.params.id).then(function(user){
+        res.send({
+          user: user,
+          spots: spots,
+          reservations: reservations
+        });
+      })
     })
   })
 });

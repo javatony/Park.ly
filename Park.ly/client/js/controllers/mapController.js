@@ -43,17 +43,15 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
 
   // run initialize function on page load
   initi();
-  console.log("*********************");
-  // renderMap();
-  console.log("*********************");
 
   //Use my location
   $("#myLocation").on('click', function(){
+    $cookies.put("visited", true)
     map.remove();
     $('#mapStarter').append('<div id="map"></div>');
     getLocation(currentLocations);
-    $window.location.reload()
   });
+
 
   //Error checking for date inputs
   $scope.checkErr = function(start_date_time,end_date_time) {
@@ -77,8 +75,6 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
   // Get data from query search and post to server to filter
   $scope.processForm = function(){
 
-
-
     var data = angular.copy($scope.formData);
     console.log(data)
     var rawAddress =  data.address;
@@ -87,13 +83,12 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
 
     $cookies.put("start", data.start_date_time)
     $cookies.put("end", data.end_date_time)
+    $cookies.put("visited", true)
 
     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyC7fCLRRT6scDos0V3pHanuNsmvSX_2dtc", function(results){
       if (results.status === "ZERO_RESULTS") {
-        $scope.addressErr = "Sorry, we cannot locate the address you entered.";
-        return false;
+        sweetAlert("Oops...", "Sorry, we can not locate the address specified, please try again", "error")
       } else {
-        $scope.addressErr = "";
         $scope.errMessage = "";
         newLat = results.results[0].geometry.location.lat;
         newLng = results.results[0].geometry.location.lng;
@@ -136,31 +131,7 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
         console.log("you got an error")
 
         });
-      }).fail(function(){
-        console.log("Fail");
-    });
-
-    // var rawAddress =  data.address;
-    // var finalAddress = rawAddress.split(' ').join('+');
-    // var jqxhr = $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + finalAddress + "&key=AIzaSyCi72FpZOhti2We62SYVS8NQ9pQPO9Wk1E", function(results){
-    //   var newLat = results.results[0].geometry.location.lat;
-    //   var newLng = results.results[0].geometry.location.lng;
-    //   console.log(results);
-    //   console.log(results.results[0].geometry.location.lat);
-    //   console.log(results.results[0].geometry.location.lng);
-
-
-
-
-    //   var marker = L.marker(new L.LatLng(newLat, newLng),{
-    //     draggable:false
-    //   });
-
-    //   marker.bindPopup('Location').openPopup();
-    //   marker.addTo(map);
-    // })
-
-
+      })
 
   }
 

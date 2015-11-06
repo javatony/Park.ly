@@ -4,13 +4,13 @@ function renderMap(responseCoords, test){
   L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueXRhbmciLCJhIjoiY2lnY29vYzAwNDV6bnV4a212dmJvaXB2biJ9.q3arVXHBYBTZ_R2PH2vMjA';
 
   //Devbootcamp SF
-  var devLat = 37.784619;
-  var devLong = -122.397236;
+  var devLat = 37.769425;
+  var devLong = -122.4884078;
 
   var renderMapHelper = function(lat, lng, responseCoords, locationTag){
-    var allMaps = ['mapbox.streets', 'mapbox.light', 'mapbox.comic', 'mapbox.outdoors', 'mapbox.pencil', 'mapbox.pirates', 'mapbox.emerald', 'mapbox.high-contrast']
-    var randMap = allMaps[Math.floor(Math.random()*allMaps.length)];
-    var map = L.mapbox.map('map', randMap).setView([lat, lng], 15);
+    // var allMaps = ['mapbox.streets', 'mapbox.light', 'mapbox.comic', 'mapbox.outdoors', 'mapbox.pencil', 'mapbox.pirates', 'mapbox.emerald', 'mapbox.high-contrast']
+    // var randMap = allMaps[Math.floor(Math.random()*allMaps.length)];
+    var map = L.mapbox.map('map', 'mapbox.emerald').setView([lat, lng], 15);
     var marker = L.marker(new L.LatLng(lat, lng),{
       draggable:false
     });
@@ -43,7 +43,7 @@ function renderMap(responseCoords, test){
     renderMapHelper(latitude, longitude, responseCoords, "Your Current Location");
     latitude = 0;
   }else if(responseCoords)  {
-    renderMapHelper(newLat, newLng, responseCoords, "Headquarter SF");
+    renderMapHelper(newLat, newLng, responseCoords, "Location");
   }else { //First reach the site
     renderMapHelper(devLat, devLong, responseCoords, "Headquarter SF");
   }

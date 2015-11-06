@@ -11,8 +11,8 @@ app.controller('MapController', ['$scope', '$http', '$cookies', '$window', funct
     })
     .success(function(allSpots){
 
-      newLat = 37.7846334;
-      newLng = -122.3974137;
+      newLat = 37.2972057;
+      newLng = -121.9578404;
 
       allSpots.forEach(function(spot){
         spot.type = "Feature"

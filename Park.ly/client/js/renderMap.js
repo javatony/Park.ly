@@ -31,7 +31,8 @@ function renderMap(responseCoords, test){
       // http://leafletjs.com/reference.html#popup
       marker.bindPopup(popupContent,{
         closeButton: true,
-        minWidth: 340
+        minWidth: 276,
+        maxWidth: 276
       });
     });
 
